@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5cerd4ukc6uq"]
+
+[ext_resource type="Script" uid="uid://dod8kkj0q5lt7" path="res://Source/Scenes/Managers/MenuManager.cs" id="1_dgacv"]
+[ext_resource type="PackedScene" uid="uid://b8yxl0kc0xtqt" path="res://Content/Scenes/Menus/MainMenu.tscn" id="2_glsih"]
+[ext_resource type="PackedScene" uid="uid://cmkeh6coyp6k8" path="res://Content/Scenes/Menus/GameplayMenu.tscn" id="2_yer1g"]
+[ext_resource type="PackedScene" uid="uid://bp68pgk7yka8j" path="res://Content/Scenes/Menus/SettingsMenu.tscn" id="3_l7th7"]
+[ext_resource type="PackedScene" uid="uid://jf3q7idanm8n" path="res://Content/Scenes/Menus/PauseMenu.tscn" id="6_fn6oh"]
+
+[node name="MenuManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dgacv")
+mainMenuScene = ExtResource("2_glsih")
+settingsMenuScene = ExtResource("3_l7th7")
+gameplayMenuScene = ExtResource("2_yer1g")
+pauseMenuScene = ExtResource("6_fn6oh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
