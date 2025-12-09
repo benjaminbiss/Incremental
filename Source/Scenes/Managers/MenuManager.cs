@@ -63,7 +63,7 @@ public partial class MenuManager : Control
 		check = CheckResource(settingsMenu, "SettingsMenu");
 		if (check)
 		{
-			settingsMenu.BackButtonPressed += OnBackButtonPressed;
+			settingsMenu.BackButtonPressed += OnSettingsBackButtonPressed;
         }
         result = result == true ? check : result;
 
@@ -156,9 +156,9 @@ public partial class MenuManager : Control
 		EmitSignal(SignalName.QuitGame);
     }
 
-    private void OnBackButtonPressed()
+    private void OnSettingsBackButtonPressed()
 	{
-		ChangeMenu(previousMenu);
+        ChangeMenu(previousMenu);
     }
 
 	private void OnResumeButtonPressed()

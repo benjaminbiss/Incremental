@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bp68pgk7yka8j"]
+[gd_scene load_steps=4 format=3 uid="uid://bp68pgk7yka8j"]
 
 [ext_resource type="Script" uid="uid://da775tr1iujj3" path="res://Source/Scenes/Menus/SettingsMenu.cs" id="1_w1hkf"]
+[ext_resource type="PackedScene" uid="uid://c6qnue68a6fgb" path="res://Content/Sub-Scenes/UI/SettingsOption_Slider.tscn" id="2_xiw5f"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_w1hkf"]
+color = Color(1, 1, 1, 1)
+thickness = 2
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -10,7 +15,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w1hkf")
+settingsOptionSliderScene = ExtResource("2_xiw5f")
 backButtonPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/BackBtn")
+gameSettingsContainerPath = NodePath("MarginContainer/VBoxContainer/TabContainer/Game/VBoxContainer")
+audioSettingsContainerPath = NodePath("MarginContainer/VBoxContainer/TabContainer/Audio/VBoxContainer")
+controlsSettingsContainerPath = NodePath("MarginContainer/VBoxContainer/TabContainer/Controls/VBoxContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -44,9 +53,47 @@ text = "Back"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_w1hkf")
 
-[node name="HBoxContainer1" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer1"]
+[node name="Game" type="TabBar" parent="MarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Audio" type="TabBar" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Controls" type="TabBar" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,9 +1,13 @@
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class SaveData
 {
-    public string SaveName { get; set; } = "New Save";    
+    // SAVE INFORMATION
+    public string SaveName { get; set; } = "New Save";
     public float PlayTime { get; set; } = 0f;
-    public float AutoSaveInterval { get; set; } = 300f; // in seconds
+
+    // GAME DATA
+
 }

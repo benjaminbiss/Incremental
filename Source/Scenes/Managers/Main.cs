@@ -6,14 +6,6 @@ public partial class Main : Node
     private SaveManager saveManager;
     private Timer autoSaveTimer;
 
-    private int saveDataIndex = -1;
-    private SaveData saveData
-    {
-        get { return saveManager.Saves[saveDataIndex]; }
-        set { saveManager.Saves[saveDataIndex] = value; }
-    }
-
-
     [Export]
     private PackedScene menuManagerScene;
     private MenuManager menuManager;
@@ -63,24 +55,24 @@ public partial class Main : Node
 
     public override void _Process(double delta)
     {
-        if (saveDataIndex < 0)
+        if (saveManager.SaveDataIndex < 0)
             return;
 
-        saveData.PlayTime += (float)delta;
+        saveManager.SaveData.PlayTime += (float)delta;
     }
 
     private void OnStartGame(int saveIndex)
     {
-        saveDataIndex = saveIndex;
-        if (saveData == null)
-            saveData = new SaveData();
+        saveManager.SetSaveDataIndex(saveIndex);
+        if (saveManager.SaveData == null)
+            saveManager.SaveData = new SaveData();
 
         autoSaveTimer = new Timer();
         AddChild(autoSaveTimer);
         autoSaveTimer.Name = "AutoSaveTimer";
 
-        saveManager.SaveSlot(saveDataIndex);
-        autoSaveTimer.Start(saveData.AutoSaveInterval);
+        saveManager.SaveSlot(saveManager.SaveDataIndex);
+        autoSaveTimer.Start(saveManager.Settings.GameSettings["AutoSaveInterval"]["Value"]);
     }
 
     private void OnPauseRequested(bool isPaused)
@@ -90,17 +82,17 @@ public partial class Main : Node
 
     private void OnAutoSaveTimeout()
     {
-        if (saveData == null)
+        if (saveManager.SaveData == null)
             return;
 
-        saveManager.SaveSlot(saveDataIndex);
-        autoSaveTimer.Start(saveData.AutoSaveInterval);
+        saveManager.SaveSlot(saveManager.SaveDataIndex);
+        autoSaveTimer.Start(saveManager.Settings.GameSettings["AutoSaveInterval"]["Value"]);
     }
 
     private void OnQuitRequested()
     {
-        if (saveDataIndex >= 0 && saveDataIndex < 3)                
-            saveManager.SaveSlot(saveDataIndex);
+        if (saveManager.SaveDataIndex >= 0 && saveManager.SaveDataIndex < 3)                
+            saveManager.SaveSlot(saveManager.SaveDataIndex);        
         
         GetTree().Quit();
     }
