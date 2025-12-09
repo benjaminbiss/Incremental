@@ -12,13 +12,19 @@ public partial class _CLASS_ : Node
     {
         if (!Initialize())
         {
-            GD.PrintErr($" {this} | Initialization failed.");
+            GD.PrintErr($" {GetType().Name} | Initialization failed.");
         }
     }
 
     private bool Initialize()
     {
         bool result = true;
+        //bool check;
+        //check = CheckResource(resource, "ResourceName");
+        //if (check)
+        //    resource.Pressed += OnResource;
+        //result = result == true ? check : result;
+
         return result;
     }
 

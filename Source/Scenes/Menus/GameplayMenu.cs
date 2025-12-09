@@ -6,7 +6,7 @@ public partial class GameplayMenu : Control
 	{
 		if (!Initialize())
 		{
-			GD.PrintErr($" {this} | Initialization failed.");
+			GD.PrintErr($" {GetType().Name} | Initialization failed.");
 		}
 	}
 

@@ -1,58 +1,108 @@
 using Godot;
+using System;
 
 public partial class MenuManager : Control
 {
-	private CanvasLayer canvasLayer;
+	[Signal]
+	public delegate void StartGameEventHandler(int saveId);
+	[Signal]
+	public delegate void OnPauseGameEventHandler(bool isPaused);
+	[Signal]
+	public delegate void QuitGameEventHandler();
 
-	[Export]
+    private Control currentMenu;
+	private Control previousMenu;
+
+    [Export]
 	private PackedScene mainMenuScene;
 	private MainMenu mainMenu;
-
     [Export]
 	private PackedScene settingsMenuScene;
 	private SettingsMenu settingsMenu;
-
     [Export]
 	private PackedScene gameplayMenuScene;
 	private GameplayMenu gameplayMenu;
-
 	[Export]
 	private PackedScene pauseMenuScene;
 	private PauseMenu pauseMenu;
+
 
     public override void _Ready()
 	{
 		if (!Initialize())
 		{
-			GD.PrintErr($" {this} | Initialization failed.");
+			GD.PrintErr($" {GetType().Name} | Initialization failed.");
 		}
-	}
 
-	private bool Initialize()
+		mainMenu.Visible = false;
+		settingsMenu.Visible = false;
+		gameplayMenu.Visible = false;
+        pauseMenu.Visible = false;
+
+        ChangeMenu(mainMenu);
+    }
+
+    private bool Initialize()
 	{
 		bool result = true;
-
-		canvasLayer = GetNodeOrNull<CanvasLayer>("CanvasLayer");
-        result = result == true ? CheckResource(canvasLayer, "CanvasLayer") : result;
+		bool check;
 
         mainMenu = mainMenuScene.Instantiate<MainMenu>();
-		canvasLayer.AddChild(mainMenu);
-        result = result == true ? CheckResource(mainMenu, "MainMenu") : result;	
+		AddChild(mainMenu);
+        check = CheckResource(mainMenu, "MainMenu");
+		if (check)
+		{
+			mainMenu.SaveButtonPressed += OnStartButtonPressed;
+			mainMenu.SettingsButtonPressed += OnSettingsButtonPressed;
+			mainMenu.QuitButtonPressed += OnQuitButtonPressed;
+        }
+        result = result == true ? check : result;	
 
 		settingsMenu = settingsMenuScene.Instantiate<SettingsMenu>();
-		canvasLayer.AddChild(settingsMenu);
-        result = result == true ? CheckResource(settingsMenu, "SettingsMenu") : result;
+		AddChild(settingsMenu);
+		check = CheckResource(settingsMenu, "SettingsMenu");
+		if (check)
+		{
+			settingsMenu.BackButtonPressed += OnBackButtonPressed;
+        }
+        result = result == true ? check : result;
 
         gameplayMenu = gameplayMenuScene.Instantiate<GameplayMenu>();
-		canvasLayer.AddChild(gameplayMenu);
+		AddChild(gameplayMenu);
         result = result == true ? CheckResource(gameplayMenu, "GameplayMenu") : result;
 
 		pauseMenu = pauseMenuScene.Instantiate<PauseMenu>();
-		canvasLayer.AddChild(pauseMenu);
-		result = result == true ? CheckResource(pauseMenu, "PauseMenu") : result;
+		AddChild(pauseMenu);
+		check = CheckResource(pauseMenu, "PauseMenu");
+		if (check)
+		{
+			pauseMenu.ResumeButtonPressed += OnResumeButtonPressed;
+			pauseMenu.SettingsButtonPressed += OnSettingsButtonPressed;
+			pauseMenu.MainMenuButtonPressed += OnMainMenuButtonPressed;
+			pauseMenu.QuitButtonPressed += OnQuitButtonPressed;
+        }
+        result = result == true ? check : result;
 
         return result;
 	}
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+		if (Input.IsActionJustPressed("ui_cancel"))
+		{
+			GD.Print("MenuManager | ui_cancel pressed.");
+			if (currentMenu == gameplayMenu)
+			{
+				PauseGame();
+			}
+			else if (currentMenu == pauseMenu)
+			{
+                ResumeGame();
+			}
+        }
+    }
 
 	private bool CheckResource(Node resource, string resourceName)
 	{
@@ -62,6 +112,58 @@ public partial class MenuManager : Control
             return false;
 		}
 		return true;
+    }
+
+	private void ChangeMenu(Control menuToShow)
+	{
+		if (currentMenu != null)
+			currentMenu.Visible = false;
+
+		previousMenu = currentMenu;
+        currentMenu = menuToShow;
+		currentMenu.Visible = true;
+    }
+
+	private void ResumeGame()
+	{
+        EmitSignal(SignalName.OnPauseGame, false);
+        ChangeMenu(gameplayMenu);
+    }
+
+	private void PauseGame()
+	{
+        EmitSignal(SignalName.OnPauseGame, true);
+        ChangeMenu(pauseMenu);
+    }
+
+    private void OnStartButtonPressed(int index)
+	{
+        EmitSignal(SignalName.StartGame, index);		
+        ChangeMenu(gameplayMenu);
+    }
+
+    private void OnSettingsButtonPressed()
+	{
+		ChangeMenu(settingsMenu);
+    }
+
+    private void OnMainMenuButtonPressed()
+    {
+        ChangeMenu(mainMenu);
+    }
+	private void OnQuitButtonPressed()
+	{
+		EmitSignal(SignalName.QuitGame);
+    }
+
+    private void OnBackButtonPressed()
+	{
+		ChangeMenu(previousMenu);
+    }
+
+	private void OnResumeButtonPressed()
+	{
+		ResumeGame();
     }
 }
 

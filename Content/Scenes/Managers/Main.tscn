@@ -6,3 +6,5 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_k3tp6")
 menuManagerScene = ExtResource("2_g3kg1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

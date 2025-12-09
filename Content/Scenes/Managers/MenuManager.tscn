@@ -7,16 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://jf3q7idanm8n" path="res://Content/Scenes/Menus/PauseMenu.tscn" id="6_fn6oh"]
 
 [node name="MenuManager" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_dgacv")
 mainMenuScene = ExtResource("2_glsih")
 settingsMenuScene = ExtResource("3_l7th7")
 gameplayMenuScene = ExtResource("2_yer1g")
 pauseMenuScene = ExtResource("6_fn6oh")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]

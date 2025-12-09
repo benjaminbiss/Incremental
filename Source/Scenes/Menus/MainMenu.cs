@@ -1,7 +1,15 @@
 using Godot;
+using System;
 
 public partial class MainMenu : Control
 {
+    [Signal]
+    public delegate void SaveButtonPressedEventHandler(int saveId);
+    [Signal]
+    public delegate void SettingsButtonPressedEventHandler();
+    [Signal]
+    public delegate void QuitButtonPressedEventHandler();
+
     [Export]
     private NodePath playButtonPath;
     private Button playButton;
@@ -25,16 +33,39 @@ public partial class MainMenu : Control
     private Button quitButton;
 
     public override void _Ready()
-	{
-		if (!Initialize())
-		{
-			GD.PrintErr($" {this} | Initialization failed.");
-		}
+    {
+        if (!Initialize())
+        {
+            GD.PrintErr($" {GetType().Name} | Initialization failed.");
+        }
 
         saveVBox.Visible = false;
+        SaveManager saveManager = (SaveManager)GetNode("/root/SaveManager");
+        float playTime = 0;
+        TimeSpan ts = TimeSpan.FromSeconds(playTime);
+        string formatted = ts.ToString(@"hh\:mm\:ss");
+
+        if (saveManager.Saves[0] != null)
+        {
+            playTime = saveManager.Saves[0].PlayTime;
+            ts = TimeSpan.FromSeconds(playTime);
+            save1Button.Text = $"{saveManager.Saves[0].SaveName} : {ts.ToString(@"hh\:mm\:ss")}";
+        }
+        if (saveManager.Saves[1] != null)
+        {
+            playTime = saveManager.Saves[1].PlayTime;
+            ts = TimeSpan.FromSeconds(playTime);
+            save2Button.Text = $"{saveManager.Saves[1].SaveName} : {ts.ToString(@"hh\:mm\:ss")}";
+        }
+        if (saveManager.Saves[2] != null)
+        {
+            playTime = saveManager.Saves[2].PlayTime;
+            ts = TimeSpan.FromSeconds(playTime);
+            save3Button.Text = $"{saveManager.Saves[2].SaveName} : {ts.ToString(@"hh\:mm\:ss")}";
+        }
     }
 
-	private bool Initialize()
+    private bool Initialize()
 	{
 		bool result = true;
 
@@ -50,19 +81,19 @@ public partial class MainMenu : Control
         save1Button = GetNodeOrNull<Button>(save1ButtonPath);
         check = CheckResource(save1Button, "Save1Button");
         if (check)
-            save1Button.Pressed += () => OnSaveButtonPressed(1);
+            save1Button.Pressed += () => OnLaunchSaveButtonPressed(0);
         result = result == true ? check : result;
 
         save2Button = GetNodeOrNull<Button>(save2ButtonPath);
         check = CheckResource(save2Button, "Save2Button");
         if (check)
-            save2Button.Pressed += () => OnSaveButtonPressed(2);
+            save2Button.Pressed += () => OnLaunchSaveButtonPressed(1);
         result = result == true ? check : result;
 
         save3Button = GetNodeOrNull<Button>(save3ButtonPath);
         check = CheckResource(save3Button, "Save3Button");
         if (check)
-            save3Button.Pressed += () => OnSaveButtonPressed(3);
+            save3Button.Pressed += () => OnLaunchSaveButtonPressed(2);
         result = result == true ? check : result;
 
         settingsButton = GetNodeOrNull<Button>(settingsButtonPath);
@@ -88,22 +119,27 @@ public partial class MainMenu : Control
         }
         return true;
     }
-
-    private void OnPlayButtonPressed()
+    private void ToggleSaveVBox()
     {
         saveVBox.Visible = !saveVBox.Visible;
     }
-    private void OnSaveButtonPressed(int id)
+
+    private void OnPlayButtonPressed()
     {
-        // id would be the index inside a array of save files
+        ToggleSaveVBox();
+    }
+    private void OnLaunchSaveButtonPressed(int id)
+    {
+        ToggleSaveVBox();
+        EmitSignal(SignalName.SaveButtonPressed, id);
     }
     private void OnSettingsButtonPressed()
     {
-
+        EmitSignal(SignalName.SettingsButtonPressed);
     }
     private void OnQuitButtonPressed()
     {
-        GetTree().Quit();
+        EmitSignal(SignalName.QuitButtonPressed);
     }
 }
 

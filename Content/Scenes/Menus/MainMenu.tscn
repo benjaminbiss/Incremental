@@ -17,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_6jc1g")
 playButtonPath = NodePath("VBoxContainer/HBoxContainer/VBoxContainer/PlayBtn")
 saveVBoxPath = NodePath("VBoxContainer/HBoxContainer/VBoxContainer/SaveVBox")
@@ -134,7 +135,7 @@ text = "Settings"
 
 [node name="QuitBtn" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+text = "Exit"
 
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
