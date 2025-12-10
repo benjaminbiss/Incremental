@@ -1,4 +1,5 @@
 using Godot;
+using static Godot.HttpRequest;
 
 public partial class Main : Node
 {
@@ -10,11 +11,16 @@ public partial class Main : Node
     private PackedScene menuManagerScene;
     private MenuManager menuManager;
 
+    [Export]
+    private PackedScene gameManagerScene;
+    private GameManager gameManager;
+
     public override void _Ready()
     {
         if (!Initialize())
         {
             GD.PrintErr($" {GetType().Name} | Initialization failed.");
+            return;
         }
     }
 
@@ -61,6 +67,17 @@ public partial class Main : Node
         saveManager.SaveData.PlayTime += (float)delta;
     }
 
+    private void SetupGameManager()
+    {
+        gameManager = gameManagerScene.Instantiate<GameManager>();
+        AddChild(gameManager);
+        bool check = CheckResource(gameManager, "GameManager");
+        if (check)
+        {
+
+        }
+    }
+
     private void OnStartGame(int saveIndex)
     {
         saveManager.SetSaveDataIndex(saveIndex);
@@ -73,6 +90,8 @@ public partial class Main : Node
 
         saveManager.SaveSlot(saveManager.SaveDataIndex);
         autoSaveTimer.Start(saveManager.Settings.GameSettings["AutoSaveInterval"]["Value"]);
+
+        SetupGameManager();
     }
 
     private void OnPauseRequested(bool isPaused)

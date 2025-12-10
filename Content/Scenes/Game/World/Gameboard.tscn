@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cueqf2o7tl302"]
+[gd_scene load_steps=3 format=3 uid="uid://cueqf2o7tl302"]
 
 [ext_resource type="TileSet" uid="uid://buys4rukx2jqr" path="res://Assets/TileSets/Grid.tres" id="1_43wkm"]
+[ext_resource type="Script" uid="uid://biu40ccxm3aij" path="res://Source/Scenes/Game/World/Gameboard.cs" id="1_ko8cv"]
 
 [node name="Gameboard" type="Node2D"]
+script = ExtResource("1_ko8cv")
+gridLayerPath = NodePath("Grid")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="Grid" type="TileMapLayer" parent="."]
 tile_set = ExtResource("1_43wkm")

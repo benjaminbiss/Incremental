@@ -32,7 +32,8 @@ public partial class MenuManager : Control
 		if (!Initialize())
 		{
 			GD.PrintErr($" {GetType().Name} | Initialization failed.");
-		}
+            return;
+        }
 
 		mainMenu.Visible = false;
 		settingsMenu.Visible = false;

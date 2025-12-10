@@ -13,6 +13,7 @@ public partial class _CLASS_ : Node
         if (!Initialize())
         {
             GD.PrintErr($" {GetType().Name} | Initialization failed.");
+            return;
         }
     }
 
