@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "E:\\Games\\Incremental\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|e:\\games\\incremental\\source\\scenes\\data\\savedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\data\\savedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|e:\\games\\incremental\\source\\scenes\\data\\settingsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\data\\settingsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|e:\\games\\incremental\\source\\scenes\\managers\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\managers\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|e:\\games\\incremental\\source\\sub-scenes\\ui\\settingsoption_slider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\sub-scenes\\ui\\settingsoption_slider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,20 +39,8 @@
       "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\data\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|e:\\games\\incremental\\source\\scenes\\data\\settingsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\data\\settingsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|e:\\games\\incremental\\source\\scenes\\managers\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\managers\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|e:\\games\\incremental\\source\\scenes\\managers\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\managers\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|e:\\games\\incremental\\source\\scenes\\data\\savedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\data\\savedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -60,17 +60,17 @@
         },
         {
           "DockedWidth": 48,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "Main.cs",
               "DocumentMoniker": "E:\\Games\\Incremental\\Source\\Scenes\\Managers\\Main.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Managers\\Main.cs",
               "ToolTip": "E:\\Games\\Incremental\\Source\\Scenes\\Managers\\Main.cs",
               "RelativeToolTip": "Source\\Scenes\\Managers\\Main.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAYwFgAAABaAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-08T19:36:37.665Z",
               "IsPinned": true,
@@ -78,7 +78,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "MenuManager.cs",
               "DocumentMoniker": "E:\\Games\\Incremental\\Source\\Scenes\\Managers\\MenuManager.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Managers\\MenuManager.cs",
@@ -87,12 +87,11 @@
               "ViewState": "AgIAAIkAAAAAAAAAAAApwJ0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-08T19:36:37.756Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "SaveManager.cs",
               "DocumentMoniker": "E:\\Games\\Incremental\\Source\\Scenes\\Data\\SaveManager.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Data\\SaveManager.cs",
@@ -101,18 +100,17 @@
               "ViewState": "AgIAACUAAAAAAAAAAAAwwE4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-09T06:01:36.599Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
               "Title": "SaveData.cs",
               "DocumentMoniker": "E:\\Games\\Incremental\\Source\\Scenes\\Data\\SaveData.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Data\\SaveData.cs",
               "ToolTip": "E:\\Games\\Incremental\\Source\\Scenes\\Data\\SaveData.cs",
               "RelativeToolTip": "Source\\Scenes\\Data\\SaveData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-09T05:59:34.003Z",
               "IsPinned": true,
@@ -120,13 +118,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "SettingsData.cs",
               "DocumentMoniker": "E:\\Games\\Incremental\\Source\\Scenes\\Data\\SettingsData.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Data\\SettingsData.cs",
               "ToolTip": "E:\\Games\\Incremental\\Source\\Scenes\\Data\\SettingsData.cs",
               "RelativeToolTip": "Source\\Scenes\\Data\\SettingsData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-09T19:03:35.584Z",
               "IsPinned": true,
@@ -134,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "SettingsOption_Slider.cs",
               "DocumentMoniker": "E:\\Games\\Incremental\\Source\\Sub-Scenes\\UI\\SettingsOption_Slider.cs",
               "RelativeDocumentMoniker": "Source\\Sub-Scenes\\UI\\SettingsOption_Slider.cs",
@@ -147,7 +145,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "SettingsMenu.cs",
               "DocumentMoniker": "E:\\Games\\Incremental\\Source\\Scenes\\Menus\\SettingsMenu.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Menus\\SettingsMenu.cs",
@@ -155,12 +153,11 @@
               "RelativeToolTip": "Source\\Scenes\\Menus\\SettingsMenu.cs",
               "ViewState": "AgIAAJAAAAAAAAAAAAAiwLgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T19:45:13.083Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-08T19:45:13.083Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "PauseMenu.cs",
               "DocumentMoniker": "E:\\Games\\Incremental\\Source\\Scenes\\Menus\\PauseMenu.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Menus\\PauseMenu.cs",
@@ -168,12 +165,11 @@
               "RelativeToolTip": "Source\\Scenes\\Menus\\PauseMenu.cs",
               "ViewState": "AgIAADYAAAAAAAAAAAAYwAsAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T19:45:13.001Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-08T19:45:13.001Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "MainMenu.cs",
               "DocumentMoniker": "E:\\Games\\Incremental\\Source\\Scenes\\Menus\\MainMenu.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Menus\\MainMenu.cs",
@@ -181,12 +177,11 @@
               "RelativeToolTip": "Source\\Scenes\\Menus\\MainMenu.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAQwC8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T19:45:12.909Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-08T19:45:12.909Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "GameplayMenu.cs",
               "DocumentMoniker": "E:\\Games\\Incremental\\Source\\Scenes\\Menus\\GameplayMenu.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Menus\\GameplayMenu.cs",
@@ -194,8 +189,7 @@
               "RelativeToolTip": "Source\\Scenes\\Menus\\GameplayMenu.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T19:38:42.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-08T19:38:42.674Z"
             }
           ]
         }
