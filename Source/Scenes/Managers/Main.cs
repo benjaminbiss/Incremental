@@ -10,10 +10,12 @@ public partial class Main : Node
     [Export]
     private PackedScene menuManagerScene;
     private MenuManager menuManager;
-
     [Export]
     private PackedScene gameManagerScene;
     private GameManager gameManager;
+    [Export]
+    private PackedScene entityManagerScene;
+    private EntityManager entityManager;
 
     public override void _Ready()
     {
@@ -67,11 +69,19 @@ public partial class Main : Node
         saveManager.SaveData.PlayTime += (float)delta;
     }
 
-    private void SetupGameManager()
+    private void SetupGameScene()
     {
         gameManager = gameManagerScene.Instantiate<GameManager>();
         AddChild(gameManager);
         bool check = CheckResource(gameManager, "GameManager");
+        if (check)
+        {
+
+        }
+
+        entityManager = entityManagerScene.Instantiate<EntityManager>();
+        AddChild(entityManager);
+        check = CheckResource(entityManager, "EntityManager");
         if (check)
         {
 
@@ -91,7 +101,7 @@ public partial class Main : Node
         saveManager.SaveSlot(saveManager.SaveDataIndex);
         autoSaveTimer.Start(saveManager.Settings.GameSettings["AutoSaveInterval"]["Value"]);
 
-        SetupGameManager();
+        SetupGameScene();
     }
 
     private void OnPauseRequested(bool isPaused)
