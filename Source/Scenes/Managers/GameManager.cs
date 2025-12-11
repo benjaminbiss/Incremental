@@ -2,6 +2,10 @@ using Godot;
 
 public partial class GameManager : Node
 {
+    [Export]
+    private PackedScene entityManagerScene;
+    private EntityManager entityManager;
+    
 	[Export]
     private PackedScene gameboardScene;
     private Gameboard gameboard;
@@ -19,6 +23,15 @@ public partial class GameManager : Node
 	{
 		bool result = true;
 		bool check;
+
+        entityManager = entityManagerScene.Instantiate<EntityManager>();
+        AddChild(entityManager);
+        check = CheckResource(entityManager, "EntityManager");
+        if (check)
+        {
+
+        }
+        result = result == true ? check : result;
 
         gameboard = gameboardScene.Instantiate<Gameboard>();
         AddChild(gameboard);

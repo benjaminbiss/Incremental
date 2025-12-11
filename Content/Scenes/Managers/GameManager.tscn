@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://br84pyhdxutnl"]
+[gd_scene load_steps=4 format=3 uid="uid://br84pyhdxutnl"]
 
 [ext_resource type="Script" uid="uid://208hnkl0jbvg" path="res://Source/Scenes/Managers/GameManager.cs" id="1_v7min"]
+[ext_resource type="PackedScene" uid="uid://cm1qh5t1dcnei" path="res://Content/Scenes/Managers/EntityManager.tscn" id="2_i0dat"]
 [ext_resource type="PackedScene" uid="uid://cueqf2o7tl302" path="res://Content/Scenes/Game/World/Gameboard.tscn" id="2_wvrpp"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_v7min")
+entityManagerScene = ExtResource("2_i0dat")
 gameboardScene = ExtResource("2_wvrpp")

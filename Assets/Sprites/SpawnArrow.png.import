@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qc4eojtqqr3y"
-path="res://.godot/imported/Grid_Atlas.png-afc7525c31765bdaebe2e8d8bbe331c8.ctex"
+uid="uid://bq0rb23vfwrgu"
+path="res://.godot/imported/SpawnArrow.png-dc42260e766ab82f995a517b5a926005.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Grid_Atlas.png"
-dest_files=["res://.godot/imported/Grid_Atlas.png-afc7525c31765bdaebe2e8d8bbe331c8.ctex"]
+source_file="res://Assets/Sprites/SpawnArrow.png"
+dest_files=["res://.godot/imported/SpawnArrow.png-dc42260e766ab82f995a517b5a926005.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

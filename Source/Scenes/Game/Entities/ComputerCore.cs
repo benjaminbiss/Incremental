@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ComputerCore : Node
+public partial class ComputerCore : Node2D
 {
 	public override void _Ready()
 	{

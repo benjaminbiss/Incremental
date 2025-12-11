@@ -2,7 +2,8 @@ using Godot;
 
 public partial class Gameboard : Node
 {
-	private const int GRID_SIZE = 32;
+    private const int GRID_SIZE_X = 12;
+    private const int GRID_SIZE_Y = 32;
 	private Vector2I mousePosition;
 	private Vector2I lastMousePosition;
 
@@ -49,11 +50,16 @@ public partial class Gameboard : Node
 
 	private void SetupGrid()
 	{
-		for (int y = -GRID_SIZE; y < GRID_SIZE; y++)
+		for (int y = -GRID_SIZE_Y; y <= 0; y++)
 		{
-			for (int x = -GRID_SIZE; x < GRID_SIZE; x++)
+			for (int x = -GRID_SIZE_X; x < GRID_SIZE_X; x++)
 			{
-                gridLayer.SetCell(new Vector2I(x, y), 0, new Vector2I(0,0));
+				if (y == 0)
+                    gridLayer.SetCell(new Vector2I(x, y), 0, new Vector2I(5, 0));
+                else if(x == GRID_SIZE_X - 1 || y == -1)
+                    gridLayer.SetCell(new Vector2I(x, y), 0, new Vector2I(1,0));
+                else
+					gridLayer.SetCell(new Vector2I(x, y), 0, new Vector2I(0, 0));
             }
 		}
 	}
@@ -68,7 +74,9 @@ public partial class Gameboard : Node
 		if (lastMousePosition != mousePosition)
 		{
             highlightLayer.SetCell(lastMousePosition);
-            highlightLayer.SetCell(mousePosition, 0, new Vector2I(1, 0));
+			if (mousePosition.X >= -GRID_SIZE_X && mousePosition.X < GRID_SIZE_X &&
+                mousePosition.Y >= -GRID_SIZE_Y && mousePosition.Y < 0)
+                highlightLayer.SetCell(mousePosition, 0, new Vector2I(2, 0));
         }
     }
 }
