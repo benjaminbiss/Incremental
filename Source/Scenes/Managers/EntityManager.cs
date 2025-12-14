@@ -7,6 +7,9 @@ public partial class EntityManager : Node
 	public delegate void TowerSelectedEventHandler(TowerBase tower);
 	private TowerBase selectedTower;
 
+	[Signal]
+	public delegate void TowerPlacedEventHandler(Vector2I cell);
+
     private Node towerParent;
     public Array<TowerBase> towers { get; private set; } = [];
 	private Node enemyParent;
@@ -79,6 +82,7 @@ public partial class EntityManager : Node
         towers.Add(tower);
 		tower.Name = tower.towerName;
 		tower.SetupTower(cellPosition, true);
+		EmitSignal(SignalName.TowerPlaced, cellPosition);
     }
 
 	public Node2D GetEntityAtPosition(Vector2I cellPosition)

@@ -102,11 +102,6 @@ public partial class Gameboard : Node
         }
     }
 
-    public void OnTowerSelected(TowerBase tower)
-    {
-        DisplayTowerRange(tower.cellsInRange);
-    }
-
     public void ShowTowerPlacementPreview(Array<Vector2I> cells)
     {
         highlightLayer.Clear();
@@ -114,5 +109,15 @@ public partial class Gameboard : Node
             return;
 
         DisplayTowerRange(cells);
+    }
+
+    public void OnTowerPlaced(Vector2I cell)
+    {
+        TileData data = gridLayer.GetCellTileData(cell);
+        
+    }
+    public void OnTowerSelected(TowerBase tower)
+    {
+        DisplayTowerRange(tower.cellsInRange);
     }
 }

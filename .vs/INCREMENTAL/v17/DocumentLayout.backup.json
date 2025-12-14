@@ -11,12 +11,12 @@
       "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\game\\world\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\menus\\gameplaymenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\menus\\gameplaymenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\managers\\entitymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\managers\\entitymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\menus\\gameplaymenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\menus\\gameplaymenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\managers\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -77,8 +77,7 @@
               "ViewState": "AgIAADAAAAAAAAAAAAAYwEoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-08T19:36:37.665Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -91,8 +90,7 @@
               "ViewState": "AgIAAJAAAAAAAAAAAAAIwK0AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-08T19:36:37.756Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -105,12 +103,11 @@
               "ViewState": "AgIAAAsAAAAAAAAAAAAgwAIAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-13T18:35:44.402Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GameplayMenu.cs",
               "DocumentMoniker": "C:\\GameDev\\Incremental\\Source\\Scenes\\Menus\\GameplayMenu.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Menus\\GameplayMenu.cs",
@@ -118,8 +115,7 @@
               "RelativeToolTip": "Source\\Scenes\\Menus\\GameplayMenu.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAYwDsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T22:17:59.536Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-13T22:17:59.536Z"
             },
             {
               "$type": "Document",
@@ -131,8 +127,7 @@
               "RelativeToolTip": "Source\\Scenes\\Game\\Entities\\EnemyBase.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T18:37:23.853Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-13T18:37:23.853Z"
             },
             {
               "$type": "Document",
@@ -144,18 +139,17 @@
               "RelativeToolTip": "Source\\Scenes\\Game\\Entities\\TowerBase.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAjwDUAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T17:50:57.562Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-13T17:50:57.562Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "EntityManager.cs",
               "DocumentMoniker": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\EntityManager.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Managers\\EntityManager.cs",
               "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\EntityManager.cs",
               "RelativeToolTip": "Source\\Scenes\\Managers\\EntityManager.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAkwAYAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAAkwE0AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-10T05:00:52.403Z",
               "EditorCaption": ""
@@ -168,7 +162,7 @@
               "RelativeDocumentMoniker": "Source\\Scenes\\Managers\\GameManager.cs",
               "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\GameManager.cs",
               "RelativeToolTip": "Source\\Scenes\\Managers\\GameManager.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAjwFUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAAAJ8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-10T02:41:34.106Z",
               "EditorCaption": ""
@@ -181,7 +175,7 @@
               "RelativeDocumentMoniker": "Source\\Scenes\\Game\\World\\Gameboard.cs",
               "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Game\\World\\Gameboard.cs",
               "RelativeToolTip": "Source\\Scenes\\Game\\World\\Gameboard.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAwwGEAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAowFUAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-10T04:26:35.381Z",
               "EditorCaption": ""

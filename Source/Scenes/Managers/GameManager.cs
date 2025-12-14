@@ -29,6 +29,7 @@ public partial class GameManager : Node
         }
 
         entityManager.TowerSelected += gameboard.OnTowerSelected;
+        entityManager.TowerPlaced += gameboard.OnTowerPlaced;
     }
 
 	private bool Initialize()
