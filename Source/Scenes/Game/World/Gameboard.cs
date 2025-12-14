@@ -1,11 +1,16 @@
 using Godot;
+using Godot.Collections;
+using System;
 
 public partial class Gameboard : Node
 {
+	[Signal]
+	public delegate void GridCellClickedEventHandler(Vector2I cellPosition); 
+
     private const int GRID_SIZE_X = 12;
     private const int GRID_SIZE_Y = 32;
-	private Vector2I mousePosition;
-	private Vector2I lastMousePosition;
+	public Vector2I cellUnderMousePosition { get; private set; }
+	private Vector2I cellUnderLastMousePosition;
 
     [Export]
 	private NodePath gridLayerPath;
@@ -68,15 +73,46 @@ public partial class Gameboard : Node
     {
         base._Process(delta);
 
-        lastMousePosition = mousePosition;
-        mousePosition = gridLayer.LocalToMap(gridLayer.GetLocalMousePosition());
+        cellUnderLastMousePosition = cellUnderMousePosition;
+        cellUnderMousePosition = gridLayer.LocalToMap(gridLayer.GetLocalMousePosition());
 
-		if (lastMousePosition != mousePosition)
-		{
-            highlightLayer.SetCell(lastMousePosition);
-			if (mousePosition.X >= -GRID_SIZE_X && mousePosition.X < GRID_SIZE_X &&
-                mousePosition.Y >= -GRID_SIZE_Y && mousePosition.Y < 0)
-                highlightLayer.SetCell(mousePosition, 0, new Vector2I(2, 0));
+        if (cellUnderMousePosition.X >= -GRID_SIZE_X && cellUnderMousePosition.X < GRID_SIZE_X && cellUnderMousePosition.Y >= -GRID_SIZE_Y && cellUnderMousePosition.Y < 0)
+        {
+            if (cellUnderLastMousePosition != cellUnderMousePosition)
+            {
+                highlightLayer.SetCell(cellUnderLastMousePosition);
+                highlightLayer.SetCell(cellUnderMousePosition, 0, new Vector2I(2, 0));
+            }
+            if (Input.IsActionJustPressed("Left_Click")) 
+            {
+                EmitSignal(SignalName.GridCellClicked, cellUnderMousePosition);
+            }
         }
+		else
+		{
+            highlightLayer.SetCell(cellUnderLastMousePosition);
+        }
+    }
+
+	private void DisplayTowerRange(Array<Vector2I> cells)
+	{
+        foreach (Vector2I cell in cells)
+        {
+            highlightLayer.SetCell(cell, 0, new Vector2I(3, 0));
+        }
+    }
+
+    public void OnTowerSelected(TowerBase tower)
+    {
+        DisplayTowerRange(tower.cellsInRange);
+    }
+
+    public void ShowTowerPlacementPreview(Array<Vector2I> cells)
+    {
+        highlightLayer.Clear();
+        if (cells == null)
+            return;
+
+        DisplayTowerRange(cells);
     }
 }

@@ -8,7 +8,7 @@ public partial class SettingsMenu : Control
     [Signal]
     public delegate void BackButtonPressedEventHandler();
 
-    private SaveManager saveManager;
+    private SaveGlobal saveManager;
 
     [Export, ExportCategory("GUI Sub-Scenes")]
     private PackedScene settingsOptionSliderScene;
@@ -44,7 +44,7 @@ public partial class SettingsMenu : Control
 		bool result = true;
         bool check;
 
-        saveManager = (SaveManager)GetNode("/root/SaveManager");
+        saveManager = (SaveGlobal)GetNode("/root/SaveManager");
         result = result == true ? CheckResource(saveManager, "SaveManager") : result;
 
         backButton = GetNodeOrNull<Button>(backButtonPath);

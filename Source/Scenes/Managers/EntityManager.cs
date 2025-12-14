@@ -1,12 +1,22 @@
 using Godot;
+using Godot.Collections;
 
 public partial class EntityManager : Node
 {
+	[Signal]
+	public delegate void TowerSelectedEventHandler(TowerBase tower);
+	private TowerBase selectedTower;
+
+    private Node towerParent;
+    public Array<TowerBase> towers { get; private set; } = [];
+	private Node enemyParent;
+    public Array<EnemyBase> enemies { get; private set; } = [];
+    
 	[Export]
-	private PackedScene computerCoreScene;
-    private ComputerCore computerCore;
+	private PackedScene defendObjectiveScene;
+	private DefendObjective defendObjective;
 	[Export]
-    private PackedScene entryPointScene;
+	private PackedScene entryPointScene;
 	private Node2D entryPoint;
 
     public override void _Ready()
@@ -23,21 +33,32 @@ public partial class EntityManager : Node
 		bool result = true;
 		bool check;
 
-        computerCore = computerCoreScene.Instantiate<ComputerCore>();
-        AddChild(computerCore);
-		computerCore.Position = new Vector2(0, 125);
-        check = CheckResource(computerCore, "ComputerCore");
+        // Defend Objective
+        defendObjective = defendObjectiveScene.Instantiate<DefendObjective>();
+        AddChild(defendObjective);
+		defendObjective.Position = new Vector2(0, 125);
+        check = CheckResource(defendObjective, "ComputerCore");
 		if (check)
 		{
 
 		}
 		result = result == true ? check : result;
 
-		entryPoint = entryPointScene.Instantiate<Node2D>();
+        // Entry Point
+        entryPoint = entryPointScene.Instantiate<Node2D>();
         AddChild(entryPoint);
 		entryPoint.Position = new Vector2(0, -1055);
         check = CheckResource(entryPoint, "EntryPoint");
         result = result == true ? check : result;
+
+
+		towerParent = new Node();
+		AddChild(towerParent);
+		towerParent.Name = "Towers";
+
+        enemyParent = new Node();
+        AddChild(enemyParent);
+        enemyParent.Name = "Enemies";
 
         return result;
 	}
@@ -51,5 +72,18 @@ public partial class EntityManager : Node
 		}
 		return true;
 	}
+
+    public void OnPlaceTower(Vector2I cellPosition, TowerBase tower)
+    {
+        towerParent.AddChild(tower);
+        towers.Add(tower);
+		tower.Name = tower.towerName;
+		tower.SetupTower(cellPosition, true);
+    }
+
+	public Node2D GetEntityAtPosition(Vector2I cellPosition)
+    {
+		return null;
+    }
 }
 

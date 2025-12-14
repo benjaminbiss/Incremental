@@ -40,7 +40,7 @@ public partial class MainMenu : Control
         }
 
         saveVBox.Visible = false;
-        SaveManager saveManager = (SaveManager)GetNode("/root/SaveManager");
+        SaveGlobal saveManager = (SaveGlobal)GetNode("/root/SaveManager");
         float playTime = 0;
         TimeSpan ts = TimeSpan.FromSeconds(playTime);
         string formatted = ts.ToString(@"hh\:mm\:ss");

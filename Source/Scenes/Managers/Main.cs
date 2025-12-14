@@ -1,10 +1,9 @@
 using Godot;
-using static Godot.HttpRequest;
 
 public partial class Main : Node
 {
     private CanvasLayer canvasLayer;
-    private SaveManager saveManager;
+    private SaveGlobal saveManager;
     private Timer autoSaveTimer;
 
     [Export]
@@ -31,7 +30,7 @@ public partial class Main : Node
         canvasLayer = GetNodeOrNull<CanvasLayer>("CanvasLayer");
         result = result == true ? CheckResource(canvasLayer, "CanvasLayer") : result;
 
-        saveManager = (SaveManager)GetNode("/root/SaveManager");
+        saveManager = (SaveGlobal)GetNode("/root/SaveManager");
         result = result == true ? CheckResource(saveManager, "SaveManager") : result;
 
         menuManager = menuManagerScene.Instantiate<MenuManager>();
@@ -73,7 +72,8 @@ public partial class Main : Node
         bool check = CheckResource(gameManager, "GameManager");
         if (check)
         {
-
+            menuManager.SetupGamePlayMenu(gameManager.towerScenes);
+            menuManager.gameplayMenu.TowerButtonPressed += gameManager.OnPlaceTowerButtonPressed;
         }
     }
 

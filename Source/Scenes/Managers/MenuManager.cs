@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class MenuManager : Control
@@ -21,7 +22,7 @@ public partial class MenuManager : Control
 	private SettingsMenu settingsMenu;
     [Export]
 	private PackedScene gameplayMenuScene;
-	private GameplayMenu gameplayMenu;
+	public GameplayMenu gameplayMenu { get; private set; }
 	[Export]
 	private PackedScene pauseMenuScene;
 	private PauseMenu pauseMenu;
@@ -165,6 +166,11 @@ public partial class MenuManager : Control
 	private void OnResumeButtonPressed()
 	{
 		ResumeGame();
+    }
+
+    public void SetupGamePlayMenu(Array<PackedScene> towerScenes)
+    {
+        gameplayMenu.FillTowerButtons(towerScenes);
     }
 }
 

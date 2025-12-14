@@ -1,10 +1,9 @@
 using Godot;
 using System.Text.Json;
 using System.IO;
-using System;
 using System.Collections.Generic;
 
-public partial class SaveManager : Node
+public partial class SaveGlobal : Node
 {
     private const int SAVE_SLOT_COUNT = 3;
     public int SaveDataIndex { get; private set; } = -1;

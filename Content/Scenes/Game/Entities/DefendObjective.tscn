@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://blkno0nhmccwn"]
+
+[ext_resource type="Script" uid="uid://blasbchr01qch" path="res://Source/Scenes/Game/Entities/DefendObjective.cs" id="1_eq488"]
+[ext_resource type="Texture2D" uid="uid://bsix6na72qsn0" path="res://Assets/Sprites/ComputerCore.png" id="2_on7yy"]
+
+[node name="DefendObjective" type="Node2D"]
+script = ExtResource("1_eq488")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_on7yy")
