@@ -3,18 +3,22 @@ using Godot.Collections;
 
 public partial class TowerBase : Node2D
 {
-	[Export]
-	public string towerName { get; private set; } = "Tower Name";
-    private int range = 6;
     private Vector2I cell;
     public Array<Vector2I> cellsInRange { get; private set; } = [];
     private bool bIsPlaced = false;
 
     [Export]
-	private NodePath towerSpritePath;
-    private Sprite2D towerSprite;
+    public string towerName { get; private set; } = "Tower Name";
+    [Export]
+    private int range = 6;
+    [Export]
+	private NodePath towerBaseSpritePath;
+    private Sprite2D towerBaseSprite;
+    [Export]
+    private NodePath turretSpritePath;
+    private Sprite2D turretSprite;
 
-	private Array<EnemyBase> enemiesInRange = [];
+    private Array<EnemyBase> enemiesInRange = [];
 
     public override void _Ready()
 	{
@@ -28,17 +32,14 @@ public partial class TowerBase : Node2D
 	private bool Initialize()
 	{
 		bool result = true;
-		bool check;
 
-        towerSprite = GetNodeOrNull<Sprite2D>(towerSpritePath);
-        check = CheckResource(towerSprite, "TowerSprite");
-		if (check)
-		{
+        towerBaseSprite = GetNodeOrNull<Sprite2D>(towerBaseSpritePath);
+        result = result == true ? CheckResource(towerBaseSprite, "TowerSprite") : result;
 
-		}
-		result = result == true ? check : result;
+        turretSprite = GetNodeOrNull<Sprite2D>(turretSpritePath);
+        result = result == true ? CheckResource(turretSprite, "TurretSprite") : result;
 
-		return result;
+        return result;
 	}
 
 	private bool CheckResource(Node resource, string resourceName)
@@ -67,7 +68,7 @@ public partial class TowerBase : Node2D
 		{
             Vector2 toTarget = enemiesInRange[0].GlobalPosition - GlobalPosition;
             float angle = toTarget.Angle();
-            towerSprite.Rotation = angle - Mathf.Pi / 2;
+            towerBaseSprite.Rotation = angle - Mathf.Pi / 2;
         }
     }
 
@@ -116,10 +117,10 @@ public partial class TowerBase : Node2D
 
     public Texture2D GetSpriteTexture()
     {
-        towerSprite = GetNodeOrNull<Sprite2D>(towerSpritePath);
-        if (towerSprite == null)
+        towerBaseSprite = GetNodeOrNull<Sprite2D>(towerBaseSpritePath);
+        if (towerBaseSprite == null)
             return null;
-        return towerSprite.Texture;
+        return towerBaseSprite.Texture;
     }
 }
 
