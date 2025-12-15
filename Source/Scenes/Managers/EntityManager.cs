@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System;
 
 public partial class EntityManager : Node
 {
@@ -11,11 +12,12 @@ public partial class EntityManager : Node
 	public delegate void TowerPlacedEventHandler(Vector2I cell);
 
     private Node towerParent;
-    public Array<TowerBase> towers { get; private set; } = [];
+    public Dictionary<Vector2I, TowerBase> towers { get; private set; } = [];
 	private Node enemyParent;
     public Array<EnemyBase> enemies { get; private set; } = [];
-    
-	[Export]
+	private bool bPlacedTowerThisFrame = false;
+
+    [Export]
 	private PackedScene defendObjectiveScene;
 	private DefendObjective defendObjective;
 	[Export]
@@ -79,15 +81,35 @@ public partial class EntityManager : Node
     public void OnPlaceTower(Vector2I cellPosition, TowerBase tower)
     {
         towerParent.AddChild(tower);
-        towers.Add(tower);
+        towers[cellPosition] = tower;
 		tower.Name = tower.towerName;
 		tower.SetupTower(cellPosition, true);
-		EmitSignal(SignalName.TowerPlaced, cellPosition);
+        bPlacedTowerThisFrame = true;
+        EmitSignal(SignalName.TowerPlaced, cellPosition);
     }
 
 	public Node2D GetEntityAtPosition(Vector2I cellPosition)
     {
 		return null;
+    }
+
+    public void OnGridCellClicked(Vector2I cellPosition)
+    {
+		if (!bPlacedTowerThisFrame)
+		{
+			if (towers.ContainsKey(cellPosition))
+			{
+				selectedTower = towers[cellPosition];
+				EmitSignal(SignalName.TowerSelected, selectedTower);
+			}
+			else
+			{
+				selectedTower = null;
+				EmitSignal(SignalName.TowerSelected, new TowerBase());
+			}
+        }
+		else
+			bPlacedTowerThisFrame = false;
     }
 }
 

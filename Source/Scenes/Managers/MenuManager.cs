@@ -27,7 +27,6 @@ public partial class MenuManager : Control
 	private PackedScene pauseMenuScene;
 	private PauseMenu pauseMenu;
 
-
     public override void _Ready()
 	{
 		if (!Initialize())

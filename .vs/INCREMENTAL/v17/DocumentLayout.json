@@ -7,24 +7,24 @@
       "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\game\\world\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\managers\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\managers\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\managers\\entitymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\managers\\entitymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\menus\\gameplaymenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\menus\\gameplaymenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\managers\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\managers\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\managers\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\managers\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\managers\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\managers\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\menus\\gameplaymenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\menus\\gameplaymenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\game\\entities\\towerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\game\\entities\\enemybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\game\\entities\\enemybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|c:\\gamedev\\incremental\\source\\scenes\\data\\saveglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62DE6CD3-BDDA-42C4-B72B-CEE11A3C7B96}|Incremental.csproj|solutionrelative:source\\scenes\\data\\saveglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -64,58 +60,76 @@
         },
         {
           "DockedWidth": 48,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Main.cs",
               "DocumentMoniker": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\Main.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Managers\\Main.cs",
               "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\Main.cs",
               "RelativeToolTip": "Source\\Scenes\\Managers\\Main.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAYwEoAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwEsAAABhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-08T19:36:37.665Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "MenuManager.cs",
               "DocumentMoniker": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\MenuManager.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Managers\\MenuManager.cs",
               "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\MenuManager.cs",
               "RelativeToolTip": "Source\\Scenes\\Managers\\MenuManager.cs",
-              "ViewState": "AgIAAJAAAAAAAAAAAAAIwK0AAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAiwKwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-08T19:36:37.756Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SaveGlobal.cs",
-              "DocumentMoniker": "C:\\GameDev\\Incremental\\Source\\Scenes\\Data\\SaveGlobal.cs",
-              "RelativeDocumentMoniker": "Source\\Scenes\\Data\\SaveGlobal.cs",
-              "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Data\\SaveGlobal.cs",
-              "RelativeToolTip": "Source\\Scenes\\Data\\SaveGlobal.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAgwAIAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T18:35:44.402Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\GameManager.cs",
+              "RelativeDocumentMoniker": "Source\\Scenes\\Managers\\GameManager.cs",
+              "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\GameManager.cs",
+              "RelativeToolTip": "Source\\Scenes\\Managers\\GameManager.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAUwB8AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T02:41:34.106Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EntityManager.cs",
+              "DocumentMoniker": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\EntityManager.cs",
+              "RelativeDocumentMoniker": "Source\\Scenes\\Managers\\EntityManager.cs",
+              "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\EntityManager.cs",
+              "RelativeToolTip": "Source\\Scenes\\Managers\\EntityManager.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAowGsAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T05:00:52.403Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "GameplayMenu.cs",
               "DocumentMoniker": "C:\\GameDev\\Incremental\\Source\\Scenes\\Menus\\GameplayMenu.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Menus\\GameplayMenu.cs",
               "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Menus\\GameplayMenu.cs",
               "RelativeToolTip": "Source\\Scenes\\Menus\\GameplayMenu.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAYwDsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T22:17:59.536Z"
+              "WhenOpened": "2025-12-13T22:17:59.536Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -143,39 +157,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EntityManager.cs",
-              "DocumentMoniker": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\EntityManager.cs",
-              "RelativeDocumentMoniker": "Source\\Scenes\\Managers\\EntityManager.cs",
-              "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\EntityManager.cs",
-              "RelativeToolTip": "Source\\Scenes\\Managers\\EntityManager.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAkwFQAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T05:00:52.403Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GameManager.cs",
-              "DocumentMoniker": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\GameManager.cs",
-              "RelativeDocumentMoniker": "Source\\Scenes\\Managers\\GameManager.cs",
-              "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Managers\\GameManager.cs",
-              "RelativeToolTip": "Source\\Scenes\\Managers\\GameManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T02:41:34.106Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Gameboard.cs",
               "DocumentMoniker": "C:\\GameDev\\Incremental\\Source\\Scenes\\Game\\World\\Gameboard.cs",
               "RelativeDocumentMoniker": "Source\\Scenes\\Game\\World\\Gameboard.cs",
               "ToolTip": "C:\\GameDev\\Incremental\\Source\\Scenes\\Game\\World\\Gameboard.cs",
               "RelativeToolTip": "Source\\Scenes\\Game\\World\\Gameboard.cs",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAswHQAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-10T04:26:35.381Z",
               "EditorCaption": ""

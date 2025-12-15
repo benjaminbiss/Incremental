@@ -1,6 +1,5 @@
 using Godot;
 using Godot.Collections;
-using System;
 
 public partial class GameManager : Node
 {
@@ -9,11 +8,11 @@ public partial class GameManager : Node
 
     [Export]
     private PackedScene entityManagerScene;
-    private EntityManager entityManager;
+    public EntityManager entityManager { get; private set; }
     
 	[Export]
     private PackedScene gameboardScene;
-    private Gameboard gameboard;
+    public Gameboard gameboard { get; private set; }
 
     [Export]
     public Array<PackedScene> towerScenes { get; private set; } = [];
@@ -30,6 +29,7 @@ public partial class GameManager : Node
 
         entityManager.TowerSelected += gameboard.OnTowerSelected;
         entityManager.TowerPlaced += gameboard.OnTowerPlaced;
+        gameboard.GridCellClicked += entityManager.OnGridCellClicked;
     }
 
 	private bool Initialize()
@@ -127,6 +127,7 @@ public partial class GameManager : Node
         {
             // IMPLEMENT MULTI-CLICK SELECT LOGIC HERE
             Node2D entity = entityManager.GetEntityAtPosition(cellPosition);
+            
         }
     }
 
