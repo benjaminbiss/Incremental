@@ -49,7 +49,6 @@ public partial class Gameboard : Node2D
         highlightLayer = GetNode<TileMapLayer>(highlightLayerPath);
         result = result == true ? CheckResource(highlightLayer, "Highlight") : result;
 
-
         return result;
 	}
 
@@ -239,7 +238,9 @@ public partial class Gameboard : Node2D
         worldPath = [];
         for (int i = 0; i < path.Count; i++)
         {
-            worldPath.Add(gridLayer.MapToLocal(path[i]));
+            Vector2 world = gridLayer.MapToLocal(path[i]);
+            world = gridLayer.ToGlobal(world);
+            worldPath.Add(world);
         }
 
         return worldPath;

@@ -6,6 +6,7 @@
 [node name="MG Bunker" type="Node2D"]
 script = ExtResource("1_0o40v")
 towerName = "MG Bunker"
+range = 5
 towerBaseSpritePath = NodePath("Base")
 turretSpritePath = NodePath("Turret")
 

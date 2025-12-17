@@ -9,8 +9,10 @@ gridLayerPath = NodePath("Grid")
 highlightLayerPath = NodePath("Highlight")
 
 [node name="Grid" type="TileMapLayer" parent="."]
+position = Vector2(-16, 0)
 tile_set = ExtResource("1_43wkm")
 
 [node name="Highlight" type="TileMapLayer" parent="."]
+position = Vector2(-16, 0)
 tile_set = ExtResource("1_43wkm")
 y_sort_origin = 1

@@ -5,10 +5,21 @@ public partial class GameplayMenu : Control
 {
     [Signal]
     public delegate void TowerButtonPressedEventHandler(int index);
+    [Signal]
+    public delegate void StartWaveButtonPressedEventHandler();
 
+    [Export]
+    private NodePath startWaveButtonPath;
+    private Button startWaveButton;
     [Export]
     private NodePath towerButtonsContainerPath;
     private HBoxContainer towerButtonsContainer;
+    [Export]
+    private NodePath pointsLabelPath;
+    private Label pointsLabel;
+    [Export]
+    private NodePath waveCounterLabelPath;
+    private Label waveCounterLabel;
 
     public override void _Ready()
 	{
@@ -23,13 +34,27 @@ public partial class GameplayMenu : Control
         bool result = true;
         bool check;
 
-        towerButtonsContainer = GetNodeOrNull<HBoxContainer>(towerButtonsContainerPath);
-        check = CheckResource(towerButtonsContainer, "TowerButtonsContainer");
+        // Start Wave Button
+        startWaveButton = GetNodeOrNull<Button>(startWaveButtonPath);
+        check = CheckResource(startWaveButton, "StartWaveButton");
         if (check)
         {
-
+            startWaveButton.Pressed += OnStartWaveButtonPressed;
         }
         result = result == true ? check : result;
+
+        // Tower Buttons Container
+        towerButtonsContainer = GetNodeOrNull<HBoxContainer>(towerButtonsContainerPath);
+        result = result == true ? CheckResource(towerButtonsContainer, "TowerButtonsContainer") : result;
+
+        // Points Label
+        pointsLabel = GetNodeOrNull<Label>(pointsLabelPath);
+        result = result == true ? CheckResource(pointsLabel, "PointsLabel") : result;
+
+        // Wave Counter Label
+        waveCounterLabel = GetNodeOrNull<Label>(waveCounterLabelPath);
+        result = result == true ? CheckResource(waveCounterLabel, "WaveCounterLabel") : result;
+
 
         return result;
     }
@@ -63,6 +88,27 @@ public partial class GameplayMenu : Control
     private void OnTowerButtonPressed(int index)
     {
         EmitSignal(SignalName.TowerButtonPressed, index);
+    }
+
+    private void OnStartWaveButtonPressed()
+    {
+        EmitSignal(SignalName.StartWaveButtonPressed);
+        startWaveButton.Hide();
+    }
+
+    public void OnWaveEnded()
+    {
+        startWaveButton.Show();
+    }
+
+    public void OnPointsAwarded(int points)
+    {
+        pointsLabel.Text = $"Points: {points}";
+    }
+
+    public void OnWaveStarted(int waveNumber)
+    {
+        waveCounterLabel.Text = $"Wave: {waveNumber}";
     }
 }
 

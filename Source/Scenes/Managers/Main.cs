@@ -74,6 +74,11 @@ public partial class Main : Node
         {
             menuManager.SetupGamePlayMenu(gameManager.towerScenes);
             menuManager.gameplayMenu.TowerButtonPressed += gameManager.OnPlaceTowerButtonPressed;
+            menuManager.gameplayMenu.StartWaveButtonPressed += gameManager.OnStartWaveButtonPressed;
+
+            gameManager.entityManager.WaveEnded += menuManager.gameplayMenu.OnWaveEnded;
+            gameManager.entityManager.PointsAwarded += menuManager.gameplayMenu.OnPointsAwarded;
+            gameManager.entityManager.WaveStarted += menuManager.gameplayMenu.OnWaveStarted;
         }
     }
 

@@ -2,7 +2,18 @@ using Godot;
 
 public partial class EnemyBase : Node2D
 {
-	public override void _Ready()
+	[Signal]
+	public delegate void EnemyDestroyedEventHandler(EnemyBase enemy);
+
+    [Export]
+	public int value { get; private set; } = 1;
+	[Export]
+	public float health { get; private set; } = 10;
+	[Export]
+	public float speed_tilePerSecond { get; private set; } = 3f;
+
+
+    public override void _Ready()
 	{
 		if (!Initialize())
 		{

@@ -6,6 +6,9 @@ public partial class GameManager : Node
     private int previewTowerIndex = -1;
     private TowerBase previewTower;
 
+    private int waveNumber = 0;
+    private int points = 0;
+
     [Export]
     private PackedScene entityManagerScene;
     public EntityManager entityManager { get; private set; }
@@ -17,7 +20,7 @@ public partial class GameManager : Node
     [Export]
     public Array<PackedScene> towerScenes { get; private set; } = [];
     [Export]
-    public Array<PackedScene> enemieScenes { get; private set; } = [];
+    public Array<PackedScene> enemyScenes { get; private set; } = [];
 
     public override void _Ready()
 	{
@@ -85,6 +88,12 @@ public partial class GameManager : Node
                 previewTowerIndex = -1;
             }
         }    
+    }
+
+    public void OnStartWaveButtonPressed()
+    {
+        waveNumber++;
+        entityManager.SpawnWave(waveNumber, enemyScenes);
     }
 
     private void Gameboard_OnCellClicked(Vector2I cellPosition)

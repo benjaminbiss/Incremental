@@ -6,6 +6,7 @@
 [node name="Sentry Tower" type="Node2D"]
 script = ExtResource("1_h2y1n")
 towerName = "Sentry Tower"
+range = 8
 towerBaseSpritePath = NodePath("Base")
 turretSpritePath = NodePath("Turret")
 

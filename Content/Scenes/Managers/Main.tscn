@@ -12,5 +12,5 @@ gameManagerScene = ExtResource("3_j0yff")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -450)
+offset = Vector2(0, -550)
 zoom = Vector2(0.8, 0.8)
