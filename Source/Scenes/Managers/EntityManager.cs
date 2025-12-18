@@ -1,31 +1,29 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.IO;
 
 public partial class EntityManager : Node
 {
-	[Signal]
-	public delegate void WaveStartedEventHandler(int waveNumber);
     [Signal]
     public delegate void WaveEndedEventHandler();
 	[Signal]
 	public delegate void PointsAwardedEventHandler(int points);
+	[Signal]
+	public delegate void RelayEnemyRequestNewPathEventHandler(EnemyBase enemy);
     [Signal]
 	public delegate void TowerSelectedEventHandler(TowerBase tower);
-	private TowerBase selectedTower;
-
 	[Signal]
-	public delegate void TowerPlacedEventHandler(Vector2I cell);
+	public delegate void TowerPlacedEventHandler(Vector2I cell, int cost);
 
+    private TowerBase selectedTower;
 	private Node towerParent;
 	public Dictionary<Vector2I, TowerBase> towers { get; private set; } = [];
 	private Node enemyParent;
 	public Array<EnemyBase> enemies { get; private set; } = [];
 	private bool bPlacedTowerThisFrame = false;
+	private Array<Vector2> enemyPath;
 
-	//[Export]
-	//private PackedScene defendObjectiveScene;
-	//private DefendObjective defendObjective;
 	[Export]
 	private PackedScene entryPointScene;
 	private Node2D entryPoint;
@@ -43,17 +41,6 @@ public partial class EntityManager : Node
 	{
 		bool result = true;
 		bool check;
-
-		// Defend Objective
-		//defendObjective = defendObjectiveScene.Instantiate<DefendObjective>();
-		//AddChild(defendObjective);
-		//defendObjective.Position = new Vector2(0, 125);
-		//check = CheckResource(defendObjective, "ComputerCore");
-		//if (check)
-		//{
-
-		//}
-		//result = result == true ? check : result;
 
 		// Entry Point
 		entryPoint = entryPointScene.Instantiate<Node2D>();
@@ -84,15 +71,57 @@ public partial class EntityManager : Node
 		return true;
 	}
 
-	public void OnPlaceTower(Vector2I cellPosition, TowerBase tower)
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+		if (enemies.Count > 0)
+		{
+            MoveEnemies(delta);
+			RemoveEnemiesQueuedForDeletion();
+		}
+    }
+
+    private void MoveEnemies(double delta)
+    {
+        foreach (EnemyBase enemy in enemies)
+        {
+			if (enemy != null && !enemy.IsQueuedForDeletion())
+                enemy.MoveAlongPath(delta);
+        }
+    }
+
+	private void RemoveEnemiesQueuedForDeletion()
+	{
+        for (int i = enemies.Count - 1; i >= 0; i--)
+        {
+            if (enemies[i] == null || enemies[i].IsQueuedForDeletion())
+            {
+                enemies.RemoveAt(i);
+            }
+        }
+
+        if (enemies.Count == 0)
+        {
+            EmitSignal(SignalName.WaveEnded);
+        }
+    }
+
+    public void OnPlaceTower(Vector2I cellPosition, TowerBase tower)
 	{
 		towerParent.AddChild(tower);
 		towers[cellPosition] = tower;
 		tower.Name = tower.towerName;
 		tower.SetupTower(cellPosition, true);
 		bPlacedTowerThisFrame = true;
-		EmitSignal(SignalName.TowerPlaced, cellPosition);
-	}
+		EmitSignal(SignalName.TowerPlaced, cellPosition, tower.cost);
+
+        foreach (EnemyBase enemy in enemies)
+        {
+			enemy.EnemyMovedCells += tower.OnEnemyMovedCells;
+            enemy.EnemyDestroyed += tower.RemoveEnemyInRange;
+        }
+    }
 
 	public Node2D GetEntityAtPosition(Vector2I cellPosition)
 	{
@@ -118,34 +147,58 @@ public partial class EntityManager : Node
 			bPlacedTowerThisFrame = false;
 	}
 
-	public void SpawnWave(int wave, Array<PackedScene> enemyScenes)
+    public async void SpawnWave(int wave, Array<PackedScene> enemyScenes)
 	{
 		int waveValue = wave * 5;
 		while (waveValue > 0)
 		{
 			waveValue -= SpawnEnemy(enemyScenes[0]);
-		}
-
-		EmitSignal(SignalName.WaveStarted, wave);
+            await ToSignal(GetTree().CreateTimer(0.5f), SceneTreeTimer.SignalName.Timeout);
+        }
 	}
 
-	public int SpawnEnemy(PackedScene enemyScene)
+	private int SpawnEnemy(PackedScene enemyScene)
 	{
 		EnemyBase enemy = enemyScene.Instantiate<EnemyBase>();
 		enemyParent.AddChild(enemy);
+        enemies.Add(enemy);
+
 		enemy.Position = entryPoint.Position;
-		enemies.Add(enemy);
-		return enemy.value;
+		enemy.path = enemyPath;
+		enemy.EnemyDestroyed += OnEnemyDestroyed;
+        enemy.EnemyReachedObjective += OnEnemyReachedObjective;
+        foreach (var tower in towers)
+        {
+            enemy.EnemyMovedCells += tower.Value.OnEnemyMovedCells;
+			enemy.EnemyDestroyed += tower.Value.RemoveEnemyInRange;
+        }
+
+        return enemy.value;
 	}
 
-	private void OnEnemyDestroyed(EnemyBase enemy)
+	private void OnEnemyReachedObjective(EnemyBase enemy)
+    {
+        // Damage the player here
+
+        enemy.QueueFree();
+    }
+
+    private void OnEnemyDestroyed(EnemyBase enemy)
 	{
 		EmitSignal(SignalName.PointsAwarded, enemy.value);
-        enemies.Remove(enemy);
-		if (enemies.Count == 0)
+    }
+
+    public void OnWorldPathUpdated(Array<Vector2> worldPath)
+    {
+        enemyPath = worldPath;
+        foreach (EnemyBase enemy in enemies)
 		{
-            EmitSignal(SignalName.WaveEnded);
+            enemy.SetPath(worldPath);
         }
     }
-}
 
+	public void OnEnemyRequestNewPath(EnemyBase enemy)
+    {
+        EmitSignal(SignalName.RelayEnemyRequestNewPath, enemy);
+    }
+}

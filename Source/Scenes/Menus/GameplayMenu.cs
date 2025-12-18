@@ -101,14 +101,14 @@ public partial class GameplayMenu : Control
         startWaveButton.Show();
     }
 
-    public void OnPointsAwarded(int points)
+    public void OnPointsUpdated(int points)
     {
-        pointsLabel.Text = $"Points: {points}";
+        pointsLabel.Text = points.ToString();
     }
 
-    public void OnWaveStarted(int waveNumber)
+    public void OnWaveIncreased(int waveNumber)
     {
-        waveCounterLabel.Text = $"Wave: {waveNumber}";
+        waveCounterLabel.Text = waveNumber.ToString();
     }
 }
 

@@ -4,9 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://bl8xm5s676jbj" path="res://Assets/Sprites/Tower_Atlas.png" id="2_8lmev"]
 
 [node name="Sentry Tower" type="Node2D"]
+rotation = 1.5708
 script = ExtResource("1_h2y1n")
 towerName = "Sentry Tower"
-range = 8
+cost = 3
+range = 6
+damage = 2.0
 towerBaseSpritePath = NodePath("Base")
 turretSpritePath = NodePath("Turret")
 

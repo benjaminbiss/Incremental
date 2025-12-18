@@ -77,8 +77,9 @@ public partial class Main : Node
             menuManager.gameplayMenu.StartWaveButtonPressed += gameManager.OnStartWaveButtonPressed;
 
             gameManager.entityManager.WaveEnded += menuManager.gameplayMenu.OnWaveEnded;
-            gameManager.entityManager.PointsAwarded += menuManager.gameplayMenu.OnPointsAwarded;
-            gameManager.entityManager.WaveStarted += menuManager.gameplayMenu.OnWaveStarted;
+
+            gameManager.WaveIncreased += menuManager.gameplayMenu.OnWaveIncreased;
+            gameManager.PointsUpdated += menuManager.gameplayMenu.OnPointsUpdated;
         }
     }
 

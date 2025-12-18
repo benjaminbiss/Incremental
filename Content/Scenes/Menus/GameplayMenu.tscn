@@ -44,11 +44,15 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_k83gj")
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer1/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
 text = "Points :"
 
 [node name="Points" type="Label" parent="VBoxContainer/MarginContainer1/HBoxContainer"]
 layout_mode = 2
-text = "100"
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "10"
 
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer/MarginContainer1/HBoxContainer"]
 layout_mode = 2

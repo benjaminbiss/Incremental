@@ -6,11 +6,19 @@ public partial class TowerBase : Node2D
     private Vector2I cell;
     public Array<Vector2I> cellsInRange { get; private set; } = [];
     private bool bIsPlaced = false;
+    private bool bCanFire = false;
 
     [Export]
     public string towerName { get; private set; } = "Tower Name";
     [Export]
-    private int range = 6;
+    public int cost { get; private set; } = 1;
+    [Export]
+    private int range = 1;
+    [Export]
+    private float damage = 1;
+    [Export]
+    private float rateOfFire_perSecond = 1f;
+
     [Export]
 	private NodePath towerBaseSpritePath;
     private Sprite2D towerBaseSprite;
@@ -19,6 +27,7 @@ public partial class TowerBase : Node2D
     private Sprite2D turretSprite;
 
     private Array<EnemyBase> enemiesInRange = [];
+    private EnemyBase target;
 
     public override void _Ready()
 	{
@@ -56,29 +65,55 @@ public partial class TowerBase : Node2D
     {
         cell = towerCell;
         cellsInRange = GetCellsInRange(Vector2I.Zero);
-        Position = new Vector2(cell.X * 32 + 16, cell.Y * 32 + 16);
+        Position = new Vector2(cell.X * 32, cell.Y * 32 + 16);
         bIsPlaced = placed;
+        bCanFire = placed;
     }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
 
-		if (enemiesInRange.Count > 0)
-		{
-            Vector2 toTarget = enemiesInRange[0].GlobalPosition - GlobalPosition;
-            float angle = toTarget.Angle();
-            towerBaseSprite.Rotation = angle - Mathf.Pi / 2;
+        if (enemiesInRange.Count > 0)
+        {
+            SetTarget();
+            FaceEnemy();
+            ShootAtEnemy();
         }
     }
 
-	public void OnEnemyMovedCells(Vector2I cell, EnemyBase enemy)
+    private void SetTarget()
+    {
+        target = enemiesInRange[0];
+    }
+
+    private void FaceEnemy()
+    {
+        Vector2 toTarget = target.GlobalPosition - GlobalPosition;
+        turretSprite.Rotation = toTarget.Angle();
+    }
+
+    private void ShootAtEnemy()
+    {
+        if (bCanFire)
+        {
+            target.TakeDamage(damage);
+            bCanFire = false;
+
+            GetTree().CreateTimer(1f / rateOfFire_perSecond).Timeout += () =>
+            {
+                bCanFire = true;
+            };
+        }
+    }
+
+    public void OnEnemyMovedCells(EnemyBase enemy, Vector2I enemyCell)
 	{
-        if (enemiesInRange.Contains(enemy) && !cellsInRange.Contains(cell))
+        if (enemiesInRange.Contains(enemy) && !cellsInRange.Contains(enemyCell))
         {
             RemoveEnemyInRange(enemy);
         }
-        else if (!enemiesInRange.Contains(enemy) && cellsInRange.Contains(cell))
+        else if (!enemiesInRange.Contains(enemy) && cellsInRange.Contains(enemyCell))
         {
             AddEnemyInRange(enemy);
         }
@@ -90,7 +125,7 @@ public partial class TowerBase : Node2D
             enemiesInRange.Add(enemy);
     }
 
-    private void RemoveEnemyInRange(EnemyBase enemy)
+    public void RemoveEnemyInRange(EnemyBase enemy)
     {
         if (enemiesInRange.Contains(enemy))
             enemiesInRange.Remove(enemy);

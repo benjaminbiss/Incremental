@@ -1,17 +1,21 @@
 using Godot;
 using Godot.Collections;
+using System;
 
 public partial class Gameboard : Node2D
 {
 	[Signal]
 	public delegate void GridCellClickedEventHandler(Vector2I cellPosition);
+    [Signal]
+    public delegate void PathUpdatedEventHandler(Array<Vector2> path);
 
-    private const int GRID_SIZE_X = 12;
+    private const int GRID_SIZE_X = 8;
     private const int GRID_SIZE_Y = 32;
 	public Vector2I cellUnderMousePosition { get; private set; }
 	private Vector2I cellUnderLastMousePosition;
     private Vector2I tileUnderMousePosition;
     private Vector2I tileUnderLastMousePosition;
+    private TowerBase selectedTower;
 
     private AStarGrid2D astarGrid = new AStarGrid2D();
     private Array<Vector2I> currentPath = [];
@@ -33,10 +37,6 @@ public partial class Gameboard : Node2D
 			GD.PrintErr($" {GetType().Name} | Initialization failed.");
 			return;
 		}
-
-        SetupGrid();
-        SetupAStarGrid();
-        SetCurrentPath(pathStart, pathEnd);
     }
 
 	private bool Initialize()
@@ -62,7 +62,15 @@ public partial class Gameboard : Node2D
 		return true;
 	}
 
-	private void SetupGrid()
+    public void InitializeGamePath()
+    {
+        SetupGrid();
+        SetupAStarGrid();
+        SetCurrentPath(pathStart, pathEnd);
+    }
+
+
+    private void SetupGrid()
 	{
 		for (int y = -GRID_SIZE_Y; y <= 0; y++)
 		{
@@ -179,7 +187,7 @@ public partial class Gameboard : Node2D
         PreviewTowerRange(cells);
     }
 
-    public void OnTowerPlaced(Vector2I cell)
+    public void OnTowerPlaced(Vector2I cell, int cost)
     {
         TileData data = gridLayer.GetCellTileData(cell);
         if (data.HasCustomData("Occupied"))
@@ -191,9 +199,13 @@ public partial class Gameboard : Node2D
 
     public void OnTowerSelected(TowerBase tower)
     {
-        if (tower.Position == Vector2.Zero)
-            ClearHighlights();
-        else
+        if (selectedTower == tower)
+            return;
+
+         selectedTower = tower;
+        ClearHighlights();
+
+        if (selectedTower != new TowerBase())
             DisplayTowerRange(tower.cellsInRange);
     }
     private void ClearHighlights()
@@ -203,18 +215,18 @@ public partial class Gameboard : Node2D
         tileUnderMousePosition = Vector2I.Zero;
     }
 
-    public override void _Draw()
-    {
-        base._Draw();
+    //public override void _Draw()
+    //{
+    //    base._Draw();
 
-        if (worldPath.Count == 0)
-            return;
+    //    if (worldPath.Count == 0)
+    //        return;
 
-        for (int i = 0; i < worldPath.Count - 1; i++)
-        {
-            DrawLine(worldPath[i], worldPath[i + 1], Colors.Red, 2);
-        }
-    }
+    //    for (int i = 0; i < worldPath.Count - 1; i++)
+    //    {
+    //        DrawLine(worldPath[i], worldPath[i + 1], Colors.Red, 2);
+    //    }
+    //}
 
     private void SetCurrentPath(Vector2I start, Vector2I end)
     {
@@ -226,6 +238,7 @@ public partial class Gameboard : Node2D
     {
         currentPath = GetPath(start, end);
         worldPath = ConvertToWorld(currentPath);
+        EmitSignal(SignalName.PathUpdated, worldPath);
     }
 
     private Array<Vector2I> GetPath(Vector2I start, Vector2I end)
@@ -244,5 +257,11 @@ public partial class Gameboard : Node2D
         }
 
         return worldPath;
+    }
+
+    public void OnEnemyRequestNewPath(EnemyBase enemy)
+    {
+        Vector2I enemyCell = gridLayer.LocalToMap(gridLayer.ToLocal(enemy.Position));
+        enemy.path = ConvertToWorld(GetPath(enemyCell, pathEnd));
     }
 }

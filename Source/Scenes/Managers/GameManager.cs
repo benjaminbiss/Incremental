@@ -1,13 +1,19 @@
 using Godot;
 using Godot.Collections;
+using System;
 
 public partial class GameManager : Node
 {
+    [Signal]
+    public delegate void WaveIncreasedEventHandler(int wave);
+    [Signal]
+    public delegate void PointsUpdatedEventHandler(int points);
+
     private int previewTowerIndex = -1;
     private TowerBase previewTower;
 
-    private int waveNumber = 0;
-    private int points = 0;
+    private int waveNumber = 1;
+    private int points = 10;
 
     [Export]
     private PackedScene entityManagerScene;
@@ -32,10 +38,36 @@ public partial class GameManager : Node
 
         entityManager.TowerSelected += gameboard.OnTowerSelected;
         entityManager.TowerPlaced += gameboard.OnTowerPlaced;
+        entityManager.TowerPlaced += OnTowerPlaced;
+        entityManager.RelayEnemyRequestNewPath += gameboard.OnEnemyRequestNewPath;
+        entityManager.PointsAwarded += OnPointsAwarded;
+        entityManager.WaveEnded += OnWaveEnded;
+
         gameboard.GridCellClicked += entityManager.OnGridCellClicked;
+        gameboard.PathUpdated += entityManager.OnWorldPathUpdated;
+
+        gameboard.InitializeGamePath();
     }
 
-	private bool Initialize()
+    private void OnTowerPlaced(Vector2I cell, int cost)
+    {
+        points -= cost;
+        EmitSignal(SignalName.PointsUpdated, points);
+    }
+
+    private void OnPointsAwarded(int amount)
+    {
+        points += amount;
+        EmitSignal(SignalName.PointsUpdated, points);
+    }
+
+    private void OnWaveEnded()
+    {
+        waveNumber++;
+        EmitSignal(SignalName.WaveIncreased, waveNumber);
+    }
+
+    private bool Initialize()
 	{
 		bool result = true;
 		bool check;
@@ -92,7 +124,6 @@ public partial class GameManager : Node
 
     public void OnStartWaveButtonPressed()
     {
-        waveNumber++;
         entityManager.SpawnWave(waveNumber, enemyScenes);
     }
 
