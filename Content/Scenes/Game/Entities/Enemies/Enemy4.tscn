@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://6pd1uqa3x087"]
+
+[ext_resource type="Script" uid="uid://loobrhldam8d" path="res://Source/Scenes/Game/Entities/EnemyBase.cs" id="1_pk6rg"]
+[ext_resource type="Texture2D" uid="uid://rbalm6h03sfb" path="res://Assets/Sprites/Enemy_Atlas.png" id="2_53wpi"]
+[ext_resource type="PackedScene" uid="uid://ct1qoextjr0tx" path="res://Content/Scenes/Game/Components/Health.tscn" id="3_48f6q"]
+
+[node name="Enemy4" type="Node2D"]
+script = ExtResource("1_pk6rg")
+value = 10
+health = 50.0
+speed_tilePerSecond = 2.5
+healthComponentPath = NodePath("Health")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_53wpi")
+hframes = 5
+frame = 3
+
+[node name="Health" parent="." instance=ExtResource("3_48f6q")]

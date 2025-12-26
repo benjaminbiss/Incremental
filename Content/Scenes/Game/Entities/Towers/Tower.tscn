@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq6dw1yqumjnl"]
+
+[ext_resource type="Script" uid="uid://dpcjhtte1ua2j" path="res://Source/Scenes/Game/Entities/Tower.cs" id="1_51wvr"]
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_51wvr")

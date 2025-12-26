@@ -10,19 +10,22 @@ public partial class EntityManager : Node
 	[Signal]
 	public delegate void PointsAwardedEventHandler(int points);
 	[Signal]
+	public delegate void DealDamagerToPlayerEventHandler(int damage);
+    [Signal]
 	public delegate void RelayEnemyRequestNewPathEventHandler(EnemyBase enemy);
     [Signal]
-	public delegate void TowerSelectedEventHandler(TowerBase tower);
+	public delegate void TowerSelectedEventHandler(Tower tower);
 	[Signal]
 	public delegate void TowerPlacedEventHandler(Vector2I cell, int cost);
 
-    private TowerBase selectedTower;
+    private Tower selectedTower;
 	private Node towerParent;
-	public Dictionary<Vector2I, TowerBase> towers { get; private set; } = [];
+	public Dictionary<Vector2I, Tower> towers { get; private set; } = [];
 	private Node enemyParent;
 	public Array<EnemyBase> enemies { get; private set; } = [];
 	private bool bPlacedTowerThisFrame = false;
 	private Array<Vector2> enemyPath;
+	private int waveValue;
 
 	[Export]
 	private PackedScene entryPointScene;
@@ -98,16 +101,18 @@ public partial class EntityManager : Node
             if (enemies[i] == null || enemies[i].IsQueuedForDeletion())
             {
                 enemies.RemoveAt(i);
+                GD.Print($"Enemies Remaining: {enemies.Count}, Wave Value Remaining: {waveValue}");
             }
         }
 
-        if (enemies.Count == 0)
-        {
-            EmitSignal(SignalName.WaveEnded);
-        }
+		if (enemies.Count == 0 && waveValue <= 0)
+		{
+			GD.Print("Wave Ended");
+			EmitSignal(SignalName.WaveEnded);
+		}
     }
 
-    public void OnPlaceTower(Vector2I cellPosition, TowerBase tower)
+    public void OnPlaceTower(Vector2I cellPosition, Tower tower)
 	{
 		towerParent.AddChild(tower);
 		towers[cellPosition] = tower;
@@ -140,7 +145,7 @@ public partial class EntityManager : Node
 			else
 			{
 				selectedTower = null;
-				EmitSignal(SignalName.TowerSelected, new TowerBase());
+				EmitSignal(SignalName.TowerSelected, new Tower());
 			}
 		}
 		else
@@ -149,11 +154,23 @@ public partial class EntityManager : Node
 
     public async void SpawnWave(int wave, Array<PackedScene> enemyScenes)
 	{
-		int waveValue = wave * 5;
+		Random rand = new Random();
+		int waveScaleDifficulty = 4;
+        waveValue = wave * waveScaleDifficulty;
+
 		while (waveValue > 0)
 		{
-			waveValue -= SpawnEnemy(enemyScenes[0]);
-            await ToSignal(GetTree().CreateTimer(0.5f), SceneTreeTimer.SignalName.Timeout);
+			int indexMax = Mathf.FloorToInt(wave * 2 / waveScaleDifficulty);
+			indexMax = Mathf.Clamp(indexMax, 0, enemyScenes.Count);
+            int enemyIndex = rand.Next(0, indexMax);
+			while (enemyIndex > waveValue)
+			{
+                enemyIndex = rand.Next(0, indexMax);
+            }
+            waveValue -= SpawnEnemy(enemyScenes[enemyIndex]);
+            waveValue -= enemyIndex;
+
+            await ToSignal(GetTree().CreateTimer(1f / (float)wave), SceneTreeTimer.SignalName.Timeout);
         }
 	}
 
@@ -176,10 +193,23 @@ public partial class EntityManager : Node
         return enemy.value;
 	}
 
+	public void ClearAll()
+	{
+        foreach (var tower in towers)
+        {
+            tower.Value.QueueFree();
+        }
+        towers.Clear();
+        foreach (var enemy in enemies)
+        {
+            enemy.QueueFree();
+        }
+        enemies.Clear();
+    }
+
 	private void OnEnemyReachedObjective(EnemyBase enemy)
     {
-        // Damage the player here
-
+        EmitSignal(SignalName.DealDamagerToPlayer, enemy.GetCurrentHealth());
         enemy.QueueFree();
     }
 

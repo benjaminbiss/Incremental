@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 public partial class Main : Node
 {
@@ -41,6 +42,7 @@ public partial class Main : Node
             menuManager.StartGame += OnStartGame;
             menuManager.OnPauseGame += OnPauseRequested;
             menuManager.QuitGame += OnQuitRequested;
+            menuManager.RestartGame += ResetGameScene;
         }
         result = result == true ? check : result;
 
@@ -67,6 +69,10 @@ public partial class Main : Node
 
     private void SetupGameScene()
     {
+        if (gameManager != null)
+            gameManager.QueueFree();
+
+
         gameManager = gameManagerScene.Instantiate<GameManager>();
         AddChild(gameManager);
         bool check = CheckResource(gameManager, "GameManager");
@@ -77,10 +83,17 @@ public partial class Main : Node
             menuManager.gameplayMenu.StartWaveButtonPressed += gameManager.OnStartWaveButtonPressed;
 
             gameManager.entityManager.WaveEnded += menuManager.gameplayMenu.OnWaveEnded;
-
+            gameManager.LifeUpdated += menuManager.gameplayMenu.OnLifeUpdated;
             gameManager.WaveIncreased += menuManager.gameplayMenu.OnWaveIncreased;
             gameManager.PointsUpdated += menuManager.gameplayMenu.OnPointsUpdated;
+            gameManager.GameOver += menuManager.OnGameOver;
         }
+    }
+
+    private void ResetGameScene()
+    {
+        gameManager.entityManager.ClearAll();
+        gameManager.ResetGame();
     }
 
     private void OnStartGame(int saveIndex)
@@ -92,10 +105,9 @@ public partial class Main : Node
         autoSaveTimer = new Timer();
         AddChild(autoSaveTimer);
         autoSaveTimer.Name = "AutoSaveTimer";
-
-        saveManager.SaveSlot(saveManager.SaveDataIndex);
         autoSaveTimer.Start(saveManager.Settings.GameSettings["AutoSaveInterval"]["Value"]);
 
+        saveManager.SaveSlot(saveManager.SaveDataIndex);
         SetupGameScene();
     }
 

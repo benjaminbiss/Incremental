@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class TowerBase : Node2D
+public partial class Tower : Node2D
 {
     private Vector2I cell;
     public Array<Vector2I> cellsInRange { get; private set; } = [];
@@ -20,11 +20,8 @@ public partial class TowerBase : Node2D
     private float rateOfFire_perSecond = 1f;
 
     [Export]
-	private NodePath towerBaseSpritePath;
-    private Sprite2D towerBaseSprite;
-    [Export]
-    private NodePath turretSpritePath;
-    private Sprite2D turretSprite;
+    private NodePath towerSpritePath;
+    private Sprite2D towerSprite;
 
     private Array<EnemyBase> enemiesInRange = [];
     private EnemyBase target;
@@ -42,11 +39,8 @@ public partial class TowerBase : Node2D
 	{
 		bool result = true;
 
-        towerBaseSprite = GetNodeOrNull<Sprite2D>(towerBaseSpritePath);
-        result = result == true ? CheckResource(towerBaseSprite, "TowerSprite") : result;
-
-        turretSprite = GetNodeOrNull<Sprite2D>(turretSpritePath);
-        result = result == true ? CheckResource(turretSprite, "TurretSprite") : result;
+        towerSprite = GetNodeOrNull<Sprite2D>(towerSpritePath);
+        result = result == true ? CheckResource(towerSprite, "TurretSprite") : result;
 
         return result;
 	}
@@ -90,7 +84,7 @@ public partial class TowerBase : Node2D
     private void FaceEnemy()
     {
         Vector2 toTarget = target.GlobalPosition - GlobalPosition;
-        turretSprite.Rotation = toTarget.Angle();
+        towerSprite.Rotation = toTarget.Angle();
     }
 
     private void ShootAtEnemy()
@@ -150,12 +144,18 @@ public partial class TowerBase : Node2D
         return cellsInRange;
     }
 
+    // RETURN A REGION NOT A TEXTURE FOR THE BUTTON TO DISPLAY
     public Texture2D GetSpriteTexture()
     {
-        towerBaseSprite = GetNodeOrNull<Sprite2D>(towerBaseSpritePath);
-        if (towerBaseSprite == null)
+        towerSprite = GetNodeOrNull<Sprite2D>(towerSpritePath);
+        if (towerSprite == null)
             return null;
-        return towerBaseSprite.Texture;
+        return towerSprite.Texture;
+    }
+
+    public Rect2 GetSpriteRegion()
+    {
+        return towerSprite.RegionRect;
     }
 }
 

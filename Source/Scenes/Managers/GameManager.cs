@@ -8,12 +8,20 @@ public partial class GameManager : Node
     public delegate void WaveIncreasedEventHandler(int wave);
     [Signal]
     public delegate void PointsUpdatedEventHandler(int points);
+    [Signal]
+    public delegate void LifeUpdatedEventHandler(int life);
+    [Signal]
+    public delegate void GameOverEventHandler();
 
     private int previewTowerIndex = -1;
-    private TowerBase previewTower;
+    private Tower previewTower;
 
-    private int waveNumber = 1;
-    private int points = 10;
+    private const int startingWave = 1;
+    private int waveNumber;
+    private const int startingPoints = 10;
+    private int points;
+    private const int startingLife = 100;
+    private int life;
 
     [Export]
     private PackedScene entityManagerScene;
@@ -42,11 +50,25 @@ public partial class GameManager : Node
         entityManager.RelayEnemyRequestNewPath += gameboard.OnEnemyRequestNewPath;
         entityManager.PointsAwarded += OnPointsAwarded;
         entityManager.WaveEnded += OnWaveEnded;
+        entityManager.DealDamagerToPlayer += OnDealDamageToPlayer;
+
+        ResetGame();
 
         gameboard.GridCellClicked += entityManager.OnGridCellClicked;
         gameboard.PathUpdated += entityManager.OnWorldPathUpdated;
 
         gameboard.InitializeGamePath();
+    }
+
+    private void OnDealDamageToPlayer(int damage)
+    {
+        life -= damage;
+        life = Mathf.Max(life, 0);
+        EmitSignal(SignalName.LifeUpdated, life);
+        if (life <= 0)
+        {
+            EmitSignal(SignalName.GameOver);
+        }
     }
 
     private void OnTowerPlaced(Vector2I cell, int cost)
@@ -143,7 +165,10 @@ public partial class GameManager : Node
     {
         if (previewTowerIndex != -1 || previewTower != null)
         {
-            TowerBase tower = previewTower;
+            if (points - towerScenes[previewTowerIndex].Instantiate<Tower>().cost < 0)
+                return;
+
+            Tower tower = previewTower;
             ClearPreviewTower();
             entityManager.OnPlaceTower(cellPosition, tower);
             gameboard.ShowTowerPlacementPreview(null);
@@ -160,7 +185,9 @@ public partial class GameManager : Node
     {
         if (previewTowerIndex != -1 || previewTower != null)
         {
-            TowerBase tower = (TowerBase)previewTower.Duplicate();
+            if (points - towerScenes[previewTowerIndex].Instantiate<Tower>().cost < 0)
+                return;
+            Tower tower = (Tower)previewTower.Duplicate();
             entityManager.OnPlaceTower(cellPosition, tower);
         }
         else
@@ -183,7 +210,7 @@ public partial class GameManager : Node
         }
             
         previewTowerIndex = index;
-        TowerBase tower = towerScenes[index].Instantiate<TowerBase>();
+        Tower tower = towerScenes[index].Instantiate<Tower>();
         previewTower = tower;
         AddChild(tower);
         tower.Name = "Preview Tower";
@@ -205,6 +232,17 @@ public partial class GameManager : Node
             previewTower.QueueFree();
             previewTower = null;
         }
+    }
+
+    public void ResetGame()
+    {
+        waveNumber = startingWave;
+        points = startingPoints;
+        life = startingLife;
+
+        EmitSignal(SignalName.WaveIncreased, waveNumber);
+        EmitSignal(SignalName.PointsUpdated, points);
+        EmitSignal(SignalName.LifeUpdated, life);
     }
 }
 

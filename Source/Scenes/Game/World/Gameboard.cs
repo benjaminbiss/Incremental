@@ -15,7 +15,7 @@ public partial class Gameboard : Node2D
 	private Vector2I cellUnderLastMousePosition;
     private Vector2I tileUnderMousePosition;
     private Vector2I tileUnderLastMousePosition;
-    private TowerBase selectedTower;
+    private Tower selectedTower;
 
     private AStarGrid2D astarGrid = new AStarGrid2D();
     private Array<Vector2I> currentPath = [];
@@ -126,7 +126,7 @@ public partial class Gameboard : Node2D
         cellUnderLastMousePosition = cellUnderMousePosition;
         cellUnderMousePosition = gridLayer.LocalToMap(gridLayer.GetLocalMousePosition());
 
-        if (cellUnderMousePosition.X >= -GRID_SIZE_X && cellUnderMousePosition.X < GRID_SIZE_X && cellUnderMousePosition.Y >= -GRID_SIZE_Y && cellUnderMousePosition.Y < 0)
+        if (cellUnderMousePosition.X >= -GRID_SIZE_X && cellUnderMousePosition.X <= GRID_SIZE_X && cellUnderMousePosition.Y >= -GRID_SIZE_Y && cellUnderMousePosition.Y < 0)
         {
             if (cellUnderLastMousePosition != cellUnderMousePosition)
             {
@@ -160,7 +160,7 @@ public partial class Gameboard : Node2D
             else
                 tile = new Vector2I(2, 0);
 
-            if (cellUnderMousePosition.X >= -GRID_SIZE_X && cellUnderMousePosition.X < GRID_SIZE_X && cellUnderMousePosition.Y >= -GRID_SIZE_Y && cellUnderMousePosition.Y < 0)
+            if (cellUnderMousePosition.X >= -GRID_SIZE_X && cellUnderMousePosition.X <= GRID_SIZE_X && cellUnderMousePosition.Y >= -GRID_SIZE_Y && cellUnderMousePosition.Y < 0)
             {
                 highlightLayer.SetCell(cell, 0, tile);
             }
@@ -197,7 +197,7 @@ public partial class Gameboard : Node2D
         SetCurrentPath(pathStart, pathEnd);
     }
 
-    public void OnTowerSelected(TowerBase tower)
+    public void OnTowerSelected(Tower tower)
     {
         if (selectedTower == tower)
             return;
@@ -205,7 +205,7 @@ public partial class Gameboard : Node2D
          selectedTower = tower;
         ClearHighlights();
 
-        if (selectedTower != new TowerBase())
+        if (selectedTower != new Tower())
             DisplayTowerRange(tower.cellsInRange);
     }
     private void ClearHighlights()

@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://br84pyhdxutnl"]
+[gd_scene load_steps=10 format=3 uid="uid://br84pyhdxutnl"]
 
 [ext_resource type="Script" uid="uid://208hnkl0jbvg" path="res://Source/Scenes/Managers/GameManager.cs" id="1_v7min"]
 [ext_resource type="PackedScene" uid="uid://cm1qh5t1dcnei" path="res://Content/Scenes/Managers/EntityManager.tscn" id="2_i0dat"]
 [ext_resource type="PackedScene" uid="uid://cueqf2o7tl302" path="res://Content/Scenes/Game/World/Gameboard.tscn" id="2_wvrpp"]
-[ext_resource type="PackedScene" uid="uid://c3t0vibek2076" path="res://Content/Scenes/Game/Entities/Towers/Sentry_Tower.tscn" id="4_nkeev"]
-[ext_resource type="PackedScene" uid="uid://clnns7ph7niu4" path="res://Content/Scenes/Game/Entities/Towers/MG_Bunker.tscn" id="5_vj4tt"]
+[ext_resource type="PackedScene" uid="uid://c3t0vibek2076" path="res://Content/Scenes/Game/Entities/Towers/Weapons/Sentry.tscn" id="4_nkeev"]
+[ext_resource type="PackedScene" uid="uid://clnns7ph7niu4" path="res://Content/Scenes/Game/Entities/Towers/Weapons/MG.tscn" id="5_vj4tt"]
 [ext_resource type="PackedScene" uid="uid://cp2vg3n2cj1rv" path="res://Content/Scenes/Game/Entities/Enemies/Enemy1.tscn" id="6_rjpx0"]
+[ext_resource type="PackedScene" uid="uid://fpmhs2scbxob" path="res://Content/Scenes/Game/Entities/Enemies/Enemy2.tscn" id="7_eyorn"]
+[ext_resource type="PackedScene" uid="uid://btxdoxoic3dul" path="res://Content/Scenes/Game/Entities/Enemies/Enemy3.tscn" id="8_88ldl"]
+[ext_resource type="PackedScene" uid="uid://6pd1uqa3x087" path="res://Content/Scenes/Game/Entities/Enemies/Enemy4.tscn" id="9_onegt"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_v7min")
 entityManagerScene = ExtResource("2_i0dat")
 gameboardScene = ExtResource("2_wvrpp")
 towerScenes = Array[PackedScene]([ExtResource("4_nkeev"), ExtResource("5_vj4tt")])
-enemyScenes = Array[PackedScene]([ExtResource("6_rjpx0")])
+enemyScenes = Array[PackedScene]([ExtResource("6_rjpx0"), ExtResource("7_eyorn"), ExtResource("8_88ldl"), ExtResource("9_onegt")])

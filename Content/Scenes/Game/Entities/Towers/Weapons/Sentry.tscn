@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3t0vibek2076"]
+
+[ext_resource type="Script" uid="uid://dpcjhtte1ua2j" path="res://Source/Scenes/Game/Entities/Tower.cs" id="1_pao81"]
+[ext_resource type="Texture2D" uid="uid://bl8xm5s676jbj" path="res://Assets/Sprites/Tower_Atlas.png" id="2_5cshd"]
+
+[node name="Sentry Tower" type="Node2D"]
+rotation = 1.5708
+script = ExtResource("1_pao81")
+towerName = "Sentry Tower"
+cost = 3
+range = 6
+damage = 2.0
+towerSpritePath = NodePath("Turret")
+
+[node name="Turret" type="Sprite2D" parent="."]
+texture = ExtResource("2_5cshd")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)

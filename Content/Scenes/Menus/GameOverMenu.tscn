@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://r740k6irhqx6"]
+
+[ext_resource type="Script" uid="uid://ghw1vd6r8kma" path="res://Source/Scenes/Menus/GameOverMenu.cs" id="1_mcrqf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wvjl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xx3tu"]
+
+[node name="GameOverMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mcrqf")
+restartButtonPath = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/RestartBtn")
+settingsButtonPath = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/SettingsBtn")
+mainMenuButtonPath = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/MainMenuBtn")
+quitButtonPath = NodePath("HBoxContainer/VBoxContainer/VBoxContainer/QuitBtn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSeparator1" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8wvjl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator1" type="HSeparator" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xx3tu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Game Over"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="RestartBtn" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="SettingsBtn" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="MainMenuBtn" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="QuitBtn" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit Game"
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xx3tu")
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8wvjl")

@@ -23,7 +23,7 @@ public partial class EnemyBase : Node2D
 	[Export]
 	public float speed_tilePerSecond { get; private set; } = 3f;
 
-	[Export]
+    [Export]
 	private NodePath healthComponentPath;
 	private Health healthComponent;
 
@@ -108,6 +108,11 @@ public partial class EnemyBase : Node2D
             EmitSignal(SignalName.EnemyDestroyed, this);
             QueueFree();
         }
+    }
+
+	public float GetCurrentHealth()
+    {
+        return healthComponent.currentHealth;
     }
 }
 

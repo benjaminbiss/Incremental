@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://clnns7ph7niu4"]
 
-[ext_resource type="Script" uid="uid://dpcjhtte1ua2j" path="res://Source/Scenes/Game/Entities/TowerBase.cs" id="1_0o40v"]
+[ext_resource type="Script" uid="uid://dpcjhtte1ua2j" path="res://Source/Scenes/Game/Entities/Tower.cs" id="1_0o40v"]
 [ext_resource type="Texture2D" uid="uid://bl8xm5s676jbj" path="res://Assets/Sprites/Tower_Atlas.png" id="2_jxtmm"]
 
 [node name="MG Bunker" type="Node2D"]
@@ -10,16 +10,9 @@ towerName = "MG Bunker"
 cost = 6
 range = 4
 rateOfFire_perSecond = 3.0
-towerBaseSpritePath = NodePath("Base")
-turretSpritePath = NodePath("Turret")
-
-[node name="Base" type="Sprite2D" parent="."]
-texture = ExtResource("2_jxtmm")
-hframes = 5
-vframes = 2
+towerSpritePath = NodePath("Turret")
 
 [node name="Turret" type="Sprite2D" parent="."]
 texture = ExtResource("2_jxtmm")
-hframes = 5
-vframes = 2
-frame = 5
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

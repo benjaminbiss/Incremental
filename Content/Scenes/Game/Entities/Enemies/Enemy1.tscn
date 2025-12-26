@@ -7,6 +7,7 @@
 [node name="Enemy1" type="Node2D"]
 script = ExtResource("1_vnlp8")
 health = 5.0
+speed_tilePerSecond = 4.0
 healthComponentPath = NodePath("Health")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

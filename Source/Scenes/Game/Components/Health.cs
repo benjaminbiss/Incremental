@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Health : Control
 {
-	private float currentHealth;
+	public float currentHealth { get; private set; }
 	private float maxHealth;
 
 	[Export]

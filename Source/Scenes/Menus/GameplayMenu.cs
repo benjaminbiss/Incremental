@@ -20,6 +20,9 @@ public partial class GameplayMenu : Control
     [Export]
     private NodePath waveCounterLabelPath;
     private Label waveCounterLabel;
+    [Export]
+    private NodePath lifeLabelPath;
+    private Label lifeLabel;
 
     public override void _Ready()
 	{
@@ -55,6 +58,10 @@ public partial class GameplayMenu : Control
         waveCounterLabel = GetNodeOrNull<Label>(waveCounterLabelPath);
         result = result == true ? CheckResource(waveCounterLabel, "WaveCounterLabel") : result;
 
+        // Life Label
+        lifeLabel = GetNodeOrNull<Label>(lifeLabelPath);
+        result = result == true ? CheckResource(lifeLabel, "LifeLabel") : result;
+
 
         return result;
     }
@@ -75,10 +82,13 @@ public partial class GameplayMenu : Control
             Button towerButton = new Button();
             towerButtonsContainer.AddChild(towerButton);
             
-            TowerBase tower = towerScenes[i].Instantiate<TowerBase>();
+            Tower tower = towerScenes[i].Instantiate<Tower>();
             towerButton.Text = tower.towerName;
             towerButton.Name = tower.towerName + "_Button";
-            towerButton.Icon = tower.GetSpriteTexture();
+            AtlasTexture texture = new AtlasTexture();
+            texture.Atlas = tower.GetSpriteTexture();
+            texture.Region = tower.GetSpriteRegion();
+            towerButton.Icon = texture;
 
             int index = i;
             towerButton.Pressed += () => OnTowerButtonPressed(index);
@@ -109,6 +119,11 @@ public partial class GameplayMenu : Control
     public void OnWaveIncreased(int waveNumber)
     {
         waveCounterLabel.Text = waveNumber.ToString();
+    }
+
+    public void OnLifeUpdated(int life)
+    {
+        lifeLabel.Text = life.ToString();
     }
 }
 

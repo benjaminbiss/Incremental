@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn7d7fxwde5kn"]
+
+[ext_resource type="Texture2D" uid="uid://blrwtmvk3cbm8" path="res://Assets/Sprites/Platform_Atlas.png" id="1_dnnhg"]
+[ext_resource type="Script" uid="uid://bkdd0ghc4kymu" path="res://Source/Scenes/Game/Entities/Platform.cs" id="2_wfac2"]
+
+[node name="Platform" type="Sprite2D"]
+texture = ExtResource("1_dnnhg")
+region_enabled = true
+region_rect = Rect2(16, 32, 16, 16)
+script = ExtResource("2_wfac2")
+PlatformType = 1

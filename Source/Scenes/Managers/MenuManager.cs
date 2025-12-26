@@ -10,6 +10,8 @@ public partial class MenuManager : Control
 	public delegate void OnPauseGameEventHandler(bool isPaused);
 	[Signal]
 	public delegate void QuitGameEventHandler();
+    [Signal]
+    public delegate void RestartGameEventHandler();
 
     private Control currentMenu;
 	private Control previousMenu;
@@ -26,6 +28,9 @@ public partial class MenuManager : Control
 	[Export]
 	private PackedScene pauseMenuScene;
 	private PauseMenu pauseMenu;
+	[Export]
+	private PackedScene gameOverScene;
+    private GameOverMenu gameOverMenu;
 
     public override void _Ready()
 	{
@@ -39,6 +44,7 @@ public partial class MenuManager : Control
 		settingsMenu.Visible = false;
 		gameplayMenu.Visible = false;
         pauseMenu.Visible = false;
+        gameOverMenu.Visible = false;
 
         ChangeMenu(mainMenu);
     }
@@ -83,6 +89,17 @@ public partial class MenuManager : Control
 			pauseMenu.QuitButtonPressed += OnQuitButtonPressed;
         }
         result = result == true ? check : result;
+
+        gameOverMenu = gameOverScene.Instantiate<GameOverMenu>();
+        AddChild(gameOverMenu);
+		check = CheckResource(gameOverMenu, "GameOverMenu");
+        if (check)
+        {
+            gameOverMenu.RestartButtonPressed += OnRestartButtonPressed;
+            gameOverMenu.SettingsButtonPressed += OnSettingsButtonPressed;
+            gameOverMenu.MainMenuButtonPressed += OnMainMenuButtonPressed;
+            gameOverMenu.QuitButtonPressed += OnQuitButtonPressed;
+        }
 
         return result;
 	}
@@ -152,6 +169,7 @@ public partial class MenuManager : Control
     {
         ChangeMenu(mainMenu);
     }
+
 	private void OnQuitButtonPressed()
 	{
 		EmitSignal(SignalName.QuitGame);
@@ -162,9 +180,20 @@ public partial class MenuManager : Control
         ChangeMenu(previousMenu);
     }
 
+    public void OnGameOver()
+    {
+        gameOverMenu.Visible = true;
+    }
+
 	private void OnResumeButtonPressed()
 	{
 		ResumeGame();
+    }
+
+    private void OnRestartButtonPressed()
+    {
+        EmitSignal(SignalName.RestartGame);
+        gameOverMenu.Visible = false;
     }
 
     public void SetupGamePlayMenu(Array<PackedScene> towerScenes)
