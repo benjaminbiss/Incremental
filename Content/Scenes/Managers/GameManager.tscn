@@ -1,18 +1,44 @@
-[gd_scene load_steps=10 format=3 uid="uid://br84pyhdxutnl"]
+[gd_scene load_steps=12 format=3 uid="uid://br84pyhdxutnl"]
 
 [ext_resource type="Script" uid="uid://208hnkl0jbvg" path="res://Source/Scenes/Managers/GameManager.cs" id="1_v7min"]
 [ext_resource type="PackedScene" uid="uid://cm1qh5t1dcnei" path="res://Content/Scenes/Managers/EntityManager.tscn" id="2_i0dat"]
 [ext_resource type="PackedScene" uid="uid://cueqf2o7tl302" path="res://Content/Scenes/Game/World/Gameboard.tscn" id="2_wvrpp"]
-[ext_resource type="PackedScene" uid="uid://c3t0vibek2076" path="res://Content/Scenes/Game/Entities/Towers/Weapons/Sentry.tscn" id="4_nkeev"]
-[ext_resource type="PackedScene" uid="uid://clnns7ph7niu4" path="res://Content/Scenes/Game/Entities/Towers/Weapons/MG.tscn" id="5_vj4tt"]
+[ext_resource type="Script" uid="uid://dpcjhtte1ua2j" path="res://Source/Scenes/Game/Entities/Tower.cs" id="4_88ldl"]
+[ext_resource type="Texture2D" uid="uid://bl8xm5s676jbj" path="res://Assets/Sprites/Tower_Atlas.png" id="5_onegt"]
 [ext_resource type="PackedScene" uid="uid://cp2vg3n2cj1rv" path="res://Content/Scenes/Game/Entities/Enemies/Enemy1.tscn" id="6_rjpx0"]
 [ext_resource type="PackedScene" uid="uid://fpmhs2scbxob" path="res://Content/Scenes/Game/Entities/Enemies/Enemy2.tscn" id="7_eyorn"]
 [ext_resource type="PackedScene" uid="uid://btxdoxoic3dul" path="res://Content/Scenes/Game/Entities/Enemies/Enemy3.tscn" id="8_88ldl"]
 [ext_resource type="PackedScene" uid="uid://6pd1uqa3x087" path="res://Content/Scenes/Game/Entities/Enemies/Enemy4.tscn" id="9_onegt"]
 
+[sub_resource type="PackedScene" id="PackedScene_hkk2p"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Sentry Tower", "rotation", "script", "towerName", "cost", "range", "damage", "towerSpritePath", "Node2D", "Turret", "texture", "region_enabled", "region_rect", "Sprite2D"),
+"node_count": 2,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 8, 0, -1, 7, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 0, 0, 0, 13, 9, -1, 3, 10, 7, 11, 8, 12, 9, 0),
+"variants": [1.5708, ExtResource("4_88ldl"), "Sentry Tower", 3, 6, 2.0, NodePath("Turret"), ExtResource("5_onegt"), true, Rect2(32, 0, 32, 32)],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_6ax0g"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("MG Bunker", "rotation", "script", "towerName", "cost", "range", "rateOfFire_perSecond", "towerSpritePath", "Node2D", "Turret", "texture", "region_enabled", "region_rect", "Sprite2D"),
+"node_count": 2,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 8, 0, -1, 7, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 0, 0, 0, 13, 9, -1, 3, 10, 7, 11, 8, 12, 9, 0),
+"variants": [1.5708, ExtResource("4_88ldl"), "MG Bunker", 6, 4, 3.0, NodePath("Turret"), ExtResource("5_onegt"), true, Rect2(0, 0, 32, 32)],
+"version": 3
+}
+
 [node name="GameManager" type="Node"]
 script = ExtResource("1_v7min")
 entityManagerScene = ExtResource("2_i0dat")
 gameboardScene = ExtResource("2_wvrpp")
-towerScenes = Array[PackedScene]([ExtResource("4_nkeev"), ExtResource("5_vj4tt")])
+towerScenes = Array[PackedScene]([SubResource("PackedScene_hkk2p"), SubResource("PackedScene_6ax0g")])
 enemyScenes = Array[PackedScene]([ExtResource("6_rjpx0"), ExtResource("7_eyorn"), ExtResource("8_88ldl"), ExtResource("9_onegt")])

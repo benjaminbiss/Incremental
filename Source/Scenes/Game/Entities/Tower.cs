@@ -1,59 +1,48 @@
 using Godot;
 using Godot.Collections;
 
-public partial class Tower : Node2D
+[Tool]
+public partial class Tower : Sprite2D
 {
     private Vector2I cell;
     public Array<Vector2I> cellsInRange { get; private set; } = [];
     private bool bIsPlaced = false;
     private bool bCanFire = false;
 
-    [Export]
     public string towerName { get; private set; } = "Tower Name";
-    [Export]
     public int cost { get; private set; } = 1;
-    [Export]
     private int range = 1;
-    [Export]
     private float damage = 1;
-    [Export]
     private float rateOfFire_perSecond = 1f;
-
-    [Export]
-    private NodePath towerSpritePath;
-    private Sprite2D towerSprite;
 
     private Array<EnemyBase> enemiesInRange = [];
     private EnemyBase target;
 
-    public override void _Ready()
-	{
-		if (!Initialize())
-		{
-			GD.PrintErr($" {GetType().Name} | Initialization failed.");
-			return;
-		}
+    private Placeables.E_TowerTypes towerType;
+    [Export]
+    public Placeables.E_TowerTypes TowerType
+    {
+        get { return towerType; }
+        set { SetTowerType(value); }
     }
 
-	private bool Initialize()
-	{
-		bool result = true;
-
-        towerSprite = GetNodeOrNull<Sprite2D>(towerSpritePath);
-        result = result == true ? CheckResource(towerSprite, "TurretSprite") : result;
-
-        return result;
-	}
-
-	private bool CheckResource(Node resource, string resourceName)
-	{
-		if (resource == null)
-		{
-			GD.PrintErr($" {GetType().Name} | {resourceName} is null.");
-			return false;
-		}
-		return true;
-	}
+    private void SetTowerType(Placeables.E_TowerTypes newType)
+    {
+        towerType = newType;
+        if (Placeables.towerAtlasRegions.ContainsKey(towerType))
+        {
+            RegionRect = Placeables.towerAtlasRegions[towerType];
+            towerName = towerType.ToString();
+            // cost
+            // range
+            // damage
+            // rateOfFire_perSecond
+        }
+        else
+        {
+            GD.PrintErr($" Tower | Atlas region for tower type {towerType} not found.");
+        }
+    }
 
     public void SetupTower(Vector2I towerCell, bool placed)
     {
@@ -84,7 +73,7 @@ public partial class Tower : Node2D
     private void FaceEnemy()
     {
         Vector2 toTarget = target.GlobalPosition - GlobalPosition;
-        towerSprite.Rotation = toTarget.Angle();
+        Rotation = toTarget.Angle();
     }
 
     private void ShootAtEnemy()
@@ -144,18 +133,14 @@ public partial class Tower : Node2D
         return cellsInRange;
     }
 
-    // RETURN A REGION NOT A TEXTURE FOR THE BUTTON TO DISPLAY
     public Texture2D GetSpriteTexture()
     {
-        towerSprite = GetNodeOrNull<Sprite2D>(towerSpritePath);
-        if (towerSprite == null)
-            return null;
-        return towerSprite.Texture;
+        return Texture;
     }
 
     public Rect2 GetSpriteRegion()
     {
-        return towerSprite.RegionRect;
+        return RegionRect;
     }
 }
 

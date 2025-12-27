@@ -195,10 +195,5 @@ public partial class MenuManager : Control
         EmitSignal(SignalName.RestartGame);
         gameOverMenu.Visible = false;
     }
-
-    public void SetupGamePlayMenu(Array<PackedScene> towerScenes)
-    {
-        gameplayMenu.FillTowerButtons(towerScenes);
-    }
 }
 

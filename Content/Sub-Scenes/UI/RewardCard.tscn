@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccte0dv3kv0wj"]
+
+[ext_resource type="Texture2D" uid="uid://blrwtmvk3cbm8" path="res://Assets/Sprites/Platform_Atlas.png" id="1_oyv4l"]
+[ext_resource type="Script" uid="uid://bif4sy736fhf6" path="res://Source/Sub-Scenes/UI/RewardCard.cs" id="1_p8psl"]
+[ext_resource type="Texture2D" uid="uid://bl8xm5s676jbj" path="res://Assets/Sprites/Tower_Atlas.png" id="2_uq0iu"]
+[ext_resource type="PackedScene" uid="uid://n3r1briea3nh" path="res://Content/Sub-Scenes/UI/Reward.tscn" id="4_ly5s8"]
+
+[node name="RewardCard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_p8psl")
+towerAtlas = ExtResource("2_uq0iu")
+platformAtlas = ExtResource("1_oyv4l")
+buttonPath = NodePath("Button")
+rewardOnePath = NodePath("Button/Panel/MarginContainer/VBoxContainer/Reward1")
+rewardTwoPath = NodePath("Button/Panel/MarginContainer/VBoxContainer/Reward2")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Button/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Reward1" parent="Button/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_ly5s8")]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Reward2" parent="Button/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_ly5s8")]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2

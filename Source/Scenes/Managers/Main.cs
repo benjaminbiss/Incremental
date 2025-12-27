@@ -78,11 +78,9 @@ public partial class Main : Node
         bool check = CheckResource(gameManager, "GameManager");
         if (check)
         {
-            menuManager.SetupGamePlayMenu(gameManager.towerScenes);
             menuManager.gameplayMenu.TowerButtonPressed += gameManager.OnPlaceTowerButtonPressed;
             menuManager.gameplayMenu.StartWaveButtonPressed += gameManager.OnStartWaveButtonPressed;
 
-            gameManager.entityManager.WaveEnded += menuManager.gameplayMenu.OnWaveEnded;
             gameManager.LifeUpdated += menuManager.gameplayMenu.OnLifeUpdated;
             gameManager.WaveIncreased += menuManager.gameplayMenu.OnWaveIncreased;
             gameManager.PointsUpdated += menuManager.gameplayMenu.OnPointsUpdated;

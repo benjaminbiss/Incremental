@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq6dw1yqumjnl"]
+[gd_scene load_steps=3 format=3 uid="uid://bq6dw1yqumjnl"]
 
 [ext_resource type="Script" uid="uid://dpcjhtte1ua2j" path="res://Source/Scenes/Game/Entities/Tower.cs" id="1_51wvr"]
+[ext_resource type="Texture2D" uid="uid://bl8xm5s676jbj" path="res://Assets/Sprites/Tower_Atlas.png" id="2_dwjhx"]
 
-[node name="Tower" type="Node2D"]
+[node name="Tower" type="Sprite2D"]
+texture = ExtResource("2_dwjhx")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("1_51wvr")
